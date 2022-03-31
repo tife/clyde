@@ -10,7 +10,7 @@
 				<label for="company_name" class="control-label">Company Name</label>
 				<input type="text" name="company_name"
 					t-att-value="company_name" id="company_name" class="form-control"
-					placeholder="e.g. Apping Technology"
+					placeholder="e.g. Carmody Studio"
 					t-att-readonly="'readonly' if only_passwords else None"/>
 <!--				 required="required" t-att-autofocus="'autofocus' if login and not only_passwords else None" />-->
 			</div>
