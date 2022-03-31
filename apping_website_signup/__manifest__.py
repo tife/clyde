@@ -1,22 +1,15 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    ODOO Open Source Management Solution
-#
-#    ODOO Addon module by Sprintit Ltd
-#    Copyright (C) 2021 Sprintit Ltd (<http://sprintit.fi>).
-#
-##############################################################################
+
 {
     'name': "Website Portal Login",
-    'version': '13.0.0.1',
+    'version': '15.0.0.1',
     'summary': '''This module enables approving the users signed up from the Portal and manages signup requests from website.
                 signup approve signup verify signup approval.''',
     'category': 'Extra Tools',
     'license': 'LGPL-3',
-    'author': 'SprintIT',
-    'maintainer': 'SprintIT',
-    'website': 'http://www.sprintit.fi',
+    'author': 'Apping Technology',
+    'maintainer': 'Apping Technology',
+    'website': 'https://appingtechnology.com/',
     'depends': ['website', 'auth_signup'],
     'data': [
         'security/security.xml',
@@ -26,7 +19,7 @@
         'views/res_config_settings.xml',
         'views/res_users.xml',
     ],
-    'images': ['static/description/cover.jpg',],
+    'images': ['static/description/icon.jpg',],
     'installable': True,
     'application': False,
     'auto_install': False,

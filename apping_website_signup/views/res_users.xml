@@ -78,7 +78,7 @@
             <field name="act_window_id" ref="action_res_users_for_approval"/>
         </record>
         
-        <menuitem action="action_res_users_for_approval" id="menu_action_res_users" parent="base.menu_users" sequence="2" groups="sprintit_website_signup.group_approval_channel"/>
+        <menuitem action="action_res_users_for_approval" id="menu_action_res_users" parent="base.menu_users" sequence="2" groups="apping_website_signup.group_approval_channel"/>
         
 	</data>
 </openerp>

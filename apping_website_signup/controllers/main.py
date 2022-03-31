@@ -1,12 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    ODOO Open Source Management Solution
-#
-#    ODOO Addon module by Sprintit Ltd
-#    Copyright (C) 2021 Sprintit Ltd (<http://sprintit.fi>).
-#
-##############################################################################
 
 from odoo import http, _
 from odoo.http import request
@@ -46,14 +38,10 @@ class AuthSignupHome(AuthSignupHome):
         2) Check if user need approval or not. if needed then notify users on channel.
         3) Also send emails to all users to approval team.
         """
-        print("\n\nself============>\t", self)
-        print("\n\n*args============>\t", *args, args)
-        print("\n\n**kw============>\t", kw)
         response = super(AuthSignupHome, self).web_auth_signup(*args, **kw)
         if 'error' not in response.qcontext and request.httprequest.method == 'POST':
             company_ids = request.env['res.partner'].sudo().search([('name', '=', kw['company_name'])])
             company = [company for company in company_ids if company.company_type == 'company']
-            print("\ncompany==>\t", company)
             if company:
                company = company[0]
             if not company:
@@ -61,31 +49,25 @@ class AuthSignupHome(AuthSignupHome):
                     'name': kw['company_name'],
                     'company_type': 'company'
                     })
-                print("\nNot company==>\t", company, company.name, company.company_type)
 
             request.env.user.partner_id.sudo().write(
                        self.get_contact_vals(company,kw) 
                     )
-            print("\n\nuser company==========>\t", request.env.user.partner_id.write({'company_type': 'person', 'parent_id': company.id}))
-            print("\nself.get_contact_vals(company,kw)==========>\t", self.get_contact_vals(company,kw))
-            print("\nrequest.env.user.partner_id==========>\t", request.env.user.partner_id.name)
 
             get_param = request.env['ir.config_parameter'].sudo().get_param
             if get_param('auth_signup.signup_approval', 'False').lower() == 'true':
-                print("\nrequest=====>\t", request)
                 request.cr.execute("""update res_users set active = 'f',for_approval_menu ='t' where id =%s"""%(request.uid))
-                print("\nrequest.uid--------->\t", request.uid)
-                channel_for_approval = request.env.ref('sprintit_website_signup.channel_for_approval_users').sudo()
-                if channel_for_approval:
-                    partners = channel_for_approval.mapped('group_ids').mapped('users').mapped('partner_id')
-                    partners_to_add = partners - channel_for_approval.channel_partner_ids
-                    if partners_to_add:
-                        channel_for_approval.write({'channel_last_seen_partner_ids': [(0, 0, {'partner_id': partner_id}) for partner_id in partners_to_add.ids]})
-                    channel_for_approval.sudo().message_subscribe(partner_ids = partners.ids)
-                    channel_for_approval.sudo().message_post(
-                            body=_("<b>Please review signup request of user %s</b><br/>Find it under Settings -> Users -> To be Approve Users"%(kw['name'])), subject=_('User Approval'),
-                            subtype_xmlid='mail.mt_comment',message_type='comment',content_subtype='html')
-                template = request.env.ref('sprintit_website_signup.mail_template_user_signup_approval', raise_if_not_found=False)
+                channel_for_approval = request.env.ref('apping_website_signup.channel_for_approval_users').sudo()
+                # if channel_for_approval:
+                #     partners = channel_for_approval.mapped('group_ids').mapped('users').mapped('partner_id')
+                #     partners_to_add = partners - channel_for_approval.channel_partner_ids
+                #     if partners_to_add:
+                #         channel_for_approval.write({'channel_last_seen_partner_ids': [(0, 0, {'partner_id': partner_id}) for partner_id in partners_to_add.ids]})
+                #     channel_for_approval.sudo().message_subscribe(partner_ids=partners.ids)
+                #     channel_for_approval.sudo().message_post(
+                #             body=_("<b>Please review signup request of user %s</b><br/>Find it under Settings -> Users -> To be Approve Users"%(kw['name'])), subject=_('User Approval'),
+                #             subtype_xmlid='mail.mt_comment',message_type='comment',content_subtype='html')
+                template = request.env.ref('apping_website_signup.mail_template_user_signup_approval', raise_if_not_found=False)
                 if template:
                     template.sudo().with_context(
                         lang=request.env.user.lang,

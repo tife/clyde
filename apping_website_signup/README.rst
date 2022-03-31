@@ -1,4 +1,4 @@
-SprintIT Website Signup
+Apping Website Signup
 ==================================
 
 * Website User needs an approval if "approval configuration" is set on.
