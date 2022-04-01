@@ -7,7 +7,7 @@
 		<xpath expr="//div[hasclass('field-confirm_password')]"
 			position="after">
 			<div class="form-group field-companyname">
-				<label for="company_name" class="control-label">Company Name</label>
+				<label for="company_name" class="control-label">Business Name</label>
 				<input type="text" name="company_name"
 					t-att-value="company_name" id="company_name" class="form-control"
 					placeholder="e.g. Carmody Studio"
