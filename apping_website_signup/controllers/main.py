@@ -65,7 +65,7 @@ class AuthSignupHome(AuthSignupHome):
                     partners_to_add = partners - channel_for_approval.channel_partner_ids
                     if partners_to_add:
                         channel_for_approval.write({'channel_last_seen_partner_ids': [(0, 0, {'partner_id': partner_id}) for partner_id in partners_to_add.ids]})
-                    # channel_for_approval.sudo().message_subscribe(partner_ids=partners)
+                    # channel_for_approval.sudo().message_subscribe(partner_ids=partners.ids)
                     channel_for_approval.sudo().message_post(
                             body=_("<b>Please review signup request of user %s</b><br/>Find it under Settings -> Users -> To be Approve Users"%(kw['name'])), subject=_('User Approval'),
                             subtype_xmlid='mail.mt_comment',message_type='comment',content_subtype='html')
