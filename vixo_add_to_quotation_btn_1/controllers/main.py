@@ -49,10 +49,10 @@ class WebsiteSale(WebsiteSale):
             pdfhttpheaders = [('Content-Type', 'application/pdf'), ('Content-Length', u'%s' % len(pdf))]
             filename = "%s.pdf" % (re.sub('\W+', '-', 'Quotation / Order'))
             pdfhttpheaders.append(('Content-Disposition', content_disposition(filename)))
-            try:
-                template = request.env.ref('sale.email_template_edi_sale', False)
-                if template:
-                    template.sudo().send_mail(sale_order_id.id, force_send=True, raise_exception=True)
-            except:
-                _logger.exception('Something went wrong outgoing server')
+            # try:
+            #     template = request.env.ref('sale.email_template_edi_sale', False)
+            #     if template:
+            #         template.sudo().send_mail(sale_order_id.id, force_send=True, raise_exception=True)
+            # except:
+            #     _logger.exception('Something went wrong outgoing server')
             return request.make_response(pdf, headers=pdfhttpheaders)
