@@ -36,7 +36,7 @@ class WebsiteSale(WebsiteSale):
         )
 
         if kw.get('express'):
-            return request.redirect("/quotation/download")
+            return request.redirect("/shop/checkout?express=1")
 
         return request.redirect("/shop/cart")
 
