@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_inherit" inherit_id="website_sale.product">
+        <xpath expr="//a[@id='add_to_cart']" position="attributes">
+            <attribute name="style">display:none;</attribute>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <a role="button" class="btn btn-outline-primary btn-lg px-5 font-weight-bold o_we_buy_now" href="#"
+            t-if="not user_id._is_public()"><i
+                    class="fa fa-bolt mr-2"/>Add to Quotation
+            </a>
+            <a role="button" class="btn btn-outline-primary btn-lg px-5 font-weight-bold" t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
+               t-else=""><i
+                    class="fa fa-bolt mr-2"/>Add to Quotation
+            </a>
+        </xpath>
+    </template>
+    <record id="website_sale.product_buy_now" model="ir.ui.view">
+        <field name="active" eval="False"/>
+        <field name="customize_show" eval="False"/>
+    </record>
+
+
+</odoo>
