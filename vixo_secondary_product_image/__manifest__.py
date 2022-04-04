@@ -5,7 +5,7 @@
     'version': '1.0',
     'author': 'VIXO Digital Limited',
     'category': 'Website',
-
+    'license': 'LGPL-3',
     'depends': ['website', 'website_sale'],
     'data': [
         'template.xml',
