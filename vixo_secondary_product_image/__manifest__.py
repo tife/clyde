@@ -6,7 +6,7 @@
     'author': 'VIXO Digital Limited',
     'category': 'Website',
 
-    'depends': ['website'],
+    'depends': ['website', 'website_sale'],
     'data': [
         'template.xml',
     ],
