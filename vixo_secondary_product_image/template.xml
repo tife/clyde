@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="replace_template" inherit_id="website_sale.dynamic_filter_template_product_product_borderless_1" name="Borderless 1">
+	<!--
+		-->
+        <!--<xpath expr="//div[@class='o_carousel_product_card w-100 card border-0 p-3']" position="after">-->
+		<xpath expr="." position="inside">
+			<!-- Write here your custom code -->
+			
+			<t t-js="ctx">
+				<script>
+					var sec_images = [];
+					<t t-foreach="records" t-as="data">
+						<t t-set="product_images" t-value="data['_record']['product_template_image_ids']"/>
+						<t t-foreach="product_images" t-as="product_image">
+							//sec_images.push('<t t-esc="image_data_uri(product_image.image_512)" />');
+							sec_images['product_<t t-esc="data['_record']['id']" />'] = '<t t-esc="image_data_uri(product_image.image_512)" />';
+						</t>
+					</t>
+					
+					
+					$(document).ajaxComplete(function(){
+						/*
+						$("#s_dynamic_snippet_3 ").click(function(){
+							alert('hhi clicked');
+						})
+						*/
+						
+						$("#s_dynamic_snippet_3 .o_carousel_product_card_img_top").hover(
+							function(){
+								
+								var product_id = $(this).parents('.o_carousel_product_card:first').find('input[name=product-id]').data('product-id');
+
+								if(!$(this).data('org-img')){
+									$(this).data('org-img', $(this).attr('src'));
+								}
+								
+								if(sec_images['product_' + product_id]) {
+									if(sec_images['product_' + product_id] != null)
+										$(this).attr('src', sec_images['product_' + product_id]);
+								}
+								
+							},
+							function() {
+								$(this).attr('src', $(this).data('org-img'));            
+							}
+						);
+					});
+				</script>
+								
+			</t>
+        </xpath>
+    </template>
+</odoo>
