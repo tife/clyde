@@ -6,14 +6,16 @@ from odoo.addons.auth_signup.controllers.main import AuthSignupHome
         
 class AuthSignupHome(AuthSignupHome):
     
-    @http.route()
+    @http.route(website=True, auth="public", sitemap=False, csrf=False)
     def web_login(self, *args, **kw):
         """
         Method inherited to show messages if user approved or not.
         And also user may be approved once and again inactivate so,
         Message accordingly.
         """
+
         response = super(AuthSignupHome, self).web_login(*args, **kw)
+
         if response.qcontext and response.qcontext.get('login',False):
             inactive_user = request.env['res.users'].sudo().search([('login','=',response.qcontext.get('login')),('active','=',False),('approved_date','=',False)])
             if inactive_user:
@@ -31,7 +33,7 @@ class AuthSignupHome(AuthSignupHome):
             'parent_id': company.id, 
             }
     
-    @http.route('/web/signup', type='http', auth='public', website=True)
+    @http.route('/web/signup', type='http', auth='public', website=True, csrf=False)
     def web_auth_signup(self, *args, **kw):
         """
         1) Create structure if company is there then create partner under company.
@@ -45,28 +47,28 @@ class AuthSignupHome(AuthSignupHome):
             if company:
                company = company[0]
             if not company:
-                company = request.env['res.partner'].sudo().create({
-                    'name': kw['company_name'],
-                    'company_type': 'company'
-                    })
-
-            request.env.user.partner_id.sudo().write(
-                       self.get_contact_vals(company,kw) 
-                    )
-
+                if kw['company_name'] != "":
+                    company = request.env['res.partner'].sudo().create({
+                        'name': kw['company_name'],
+                        'company_type': 'company'
+                        })
+            if kw['company_name'] != "":
+                request.env.user.partner_id.sudo().write(
+                    self.get_contact_vals(company,kw)
+                )
             get_param = request.env['ir.config_parameter'].sudo().get_param
             if get_param('auth_signup.signup_approval', 'False').lower() == 'true':
                 request.cr.execute("""update res_users set active = 'f',for_approval_menu ='t' where id =%s"""%(request.uid))
                 channel_for_approval = request.env.ref('apping_website_signup.channel_for_approval_users').sudo()
-                # if channel_for_approval:
-                #     partners = channel_for_approval.mapped('group_ids').mapped('users').mapped('partner_id')
-                #     partners_to_add = partners - channel_for_approval.channel_partner_ids
-                #     if partners_to_add:
-                #         channel_for_approval.write({'channel_last_seen_partner_ids': [(0, 0, {'partner_id': partner_id}) for partner_id in partners_to_add.ids]})
-                #     channel_for_approval.sudo().message_subscribe(partner_ids=partners.ids)
-                #     channel_for_approval.sudo().message_post(
-                #             body=_("<b>Please review signup request of user %s</b><br/>Find it under Settings -> Users -> To be Approve Users"%(kw['name'])), subject=_('User Approval'),
-                #             subtype_xmlid='mail.mt_comment',message_type='comment',content_subtype='html')
+                if channel_for_approval:
+                    partners = channel_for_approval.mapped('group_ids').mapped('users').mapped('partner_id')
+                    partners_to_add = partners - channel_for_approval.channel_partner_ids
+                    if partners_to_add:
+                        channel_for_approval.write({'channel_last_seen_partner_ids': [(0, 0, {'partner_id': partner_id}) for partner_id in partners_to_add.ids]})
+                    # channel_for_approval.sudo().message_subscribe(partner_ids=partners.ids)
+                    channel_for_approval.sudo().message_post(
+                            body=_("<b>Please review signup request of user %s</b><br/>Find it under Settings -> Users -> To be Approve Users"%(kw['name'])), subject=_('User Approval'),
+                            subtype_xmlid='mail.mt_comment',message_type='comment',content_subtype='html')
                 template = request.env.ref('apping_website_signup.mail_template_user_signup_approval', raise_if_not_found=False)
                 if template:
                     template.sudo().with_context(
