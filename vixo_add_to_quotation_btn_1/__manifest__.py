@@ -9,6 +9,7 @@
         'views/product_template.xml',
     ],
     'depends': [
+        'sale_management',
         'website_sale',
     ],
     'demo': [
