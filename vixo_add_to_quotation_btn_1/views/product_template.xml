@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="product_inherit" inherit_id="website_sale.product">
-        <xpath expr="//a[@id='add_to_cart']" position="attributes">
-            <attribute name="style">display:none;</attribute>
-        </xpath>
-        <xpath expr="//a[@id='add_to_cart']" position="after">
-            <a role="button" class="btn btn-outline-primary btn-lg px-5 font-weight-bold o_we_buy_now" href="#"
-            t-if="not user_id._is_public()"><i
-                    class="fa fa-bolt mr-2"/>Add to Quotation
+        <xpath expr="//a[@id='add_to_cart']" position="replace">
+            <a role="button" id="add_to_cart" t-if="not user_id._is_public()"
+               class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               href="#"><i class="fa fa-shopping-cart mr-2"/>Add To Quotation
             </a>
-            <a role="button" class="btn btn-outline-primary btn-lg px-5 font-weight-bold" t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
+            <a role="button" class="btn btn-primary btn-lg my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
                t-else=""><i
                     class="fa fa-bolt mr-2"/>Add to Quotation
             </a>
         </xpath>
     </template>
-    <record id="website_sale.product_buy_now" model="ir.ui.view">
-        <field name="active" eval="False"/>
-        <field name="customize_show" eval="False"/>
-    </record>
-
-
+    <template id="products_item_inherit" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('product_price')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+    </template>
+    <template id="product_price_inherit" inherit_id="website_sale.product_price">
+        <xpath expr="//div[hasclass('product_price', 'mb-3')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+    </template>
+    <template id="payment_inherit" inherit_id="website_sale.payment">
+        <xpath expr="//t[@t-set='submit_button_label']" position="replace">
+            <t t-set="submit_button_label">Confirm Order</t>
+        </xpath>
+    </template>
+    <template id="confirmation_inherit" inherit_id="website_sale.confirmation">
+        <xpath expr="//td[@colspan='2']/t" position="replace">
+        </xpath>
+    </template>
+    <data noupdate="1">
+        <record id="sale.mail_template_sale_confirmation" model="mail.template">
+            <field name="report_template" ref="vixo_add_to_quotation_btn_1.action_report_saleorder_quotation"/>
+        </record>
+    </data>
 </odoo>

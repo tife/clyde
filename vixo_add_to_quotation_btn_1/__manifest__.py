@@ -18,6 +18,9 @@
         'web.report_assets_common': [
             'vixo_add_to_quotation_btn_1/static/src/scss/sale_report.scss',
         ],
+        'web.assets_frontend': [
+            'vixo_add_to_quotation_btn_1/static/src/scss/website.scss'
+        ],
     },
     'demo': [
     ],
