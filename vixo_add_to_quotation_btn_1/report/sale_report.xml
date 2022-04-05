@@ -28,6 +28,11 @@
             <field name="binding_type">report</field>
             <field name="paperformat_id" ref="quotation_for_clyde"/>
         </record>
+        <data noupdate="1">
+            <record id="sale.mail_template_sale_confirmation" model="mail.template">
+                <field name="report_template" ref="vixo_add_to_quotation_btn_1.action_report_saleorder_quotation"/>
+            </record>
+        </data>
 
     </data>
 </odoo>
