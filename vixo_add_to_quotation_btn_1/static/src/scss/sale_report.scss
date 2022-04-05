@@ -1,0 +1,13 @@
+.header{
+    display:none;
+}
+div.pt-5{
+        padding-top: unset !important;
+}
+.order_line_css.table th, .table td {
+    border-bottom: 2px solid black;
+    border-top: unset !important;
+}
+.order_line_css.table-sm thead  tr  th {
+    border-bottom: 2px solid !important;
+}

@@ -7,11 +7,18 @@
     'author': 'Akshar Zalavadiya',
     'data': [
         'views/product_template.xml',
+        'report/sale_report.xml',
+        'report/sale_report_template.xml',
     ],
     'depends': [
-        'sale_management',
         'website_sale',
+        'sale_management',
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'vixo_add_to_quotation_btn_1/static/src/scss/sale_report.scss',
+        ],
+    },
     'demo': [
     ],
     'images': [

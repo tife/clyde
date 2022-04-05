@@ -36,7 +36,7 @@ class WebsiteSale(WebsiteSale):
         )
 
         if kw.get('express'):
-            return request.redirect("/shop/checkout?express=1")
+            return request.redirect("/quotation/download")
 
         return request.redirect("/shop/cart")
 
@@ -44,15 +44,15 @@ class WebsiteSale(WebsiteSale):
     def donwload_saleorder(self, **kwargs):
         sale_order_id = request.website.sale_get_order(force_create=True)
         if sale_order_id:
-            pdf, _ = request.env.ref('sale.action_report_saleorder').with_user(SUPERUSER_ID)._render_qweb_pdf(
+            pdf, _ = request.env.ref('vixo_add_to_quotation_btn_1.action_report_saleorder_quotation').with_user(SUPERUSER_ID)._render_qweb_pdf(
                 [sale_order_id.id])
             pdfhttpheaders = [('Content-Type', 'application/pdf'), ('Content-Length', u'%s' % len(pdf))]
             filename = "%s.pdf" % (re.sub('\W+', '-', 'Quotation / Order'))
             pdfhttpheaders.append(('Content-Disposition', content_disposition(filename)))
-            # try:
-            #     template = request.env.ref('sale.email_template_edi_sale', False)
-            #     if template:
-            #         template.sudo().send_mail(sale_order_id.id, force_send=True, raise_exception=True)
-            # except:
-            #     _logger.exception('Something went wrong outgoing server')
+            try:
+                template = request.env.ref('sale.email_template_edi_sale', False)
+                if template:
+                    template.sudo().send_mail(sale_order_id.id, force_send=True, raise_exception=True)
+            except:
+                _logger.exception('Something went wrong outgoing server')
             return request.make_response(pdf, headers=pdfhttpheaders)
