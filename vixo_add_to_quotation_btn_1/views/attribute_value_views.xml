@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_attribute_inherit_image" model="ir.ui.view">
+        <field name="name">product.attribute.image.form</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='value_ids']/tree/field[@name='html_color']" position="after">
+                <field name="attr_image" attrs="{'column_invisible': [('parent.display_type', '!=', 'radio')]}" class="w-25 mt-2" widget="image"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

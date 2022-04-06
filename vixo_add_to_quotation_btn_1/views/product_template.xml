@@ -13,6 +13,18 @@
             </a>
         </xpath>
     </template>
+    <template id="product_banner_image_inherit" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="before">
+            <section>
+                <div class="container-fluid p-0">
+                    <div class="col-12 p-0">
+                        <img class="img img-fluid w-100" t-if="product.product_banner_image"
+                             t-attf-src="/website/image/product.template/#{product.id}/product_banner_image/1800x1800"/>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
     <template id="products_item_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
@@ -32,4 +44,111 @@
         <xpath expr="//td[@colspan='2']/t" position="replace">
         </xpath>
     </template>
+    <template id="variants_inherit" inherit_id="sale.variants">
+        <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">
+            <div class="radio_input_value custom-control-label">
+                <t t-if="ptav.product_attribute_value_id.attr_image">
+                    <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
+                         t-options='{"style":"max-width: 48px;background-color: #fff;border-radius: 5px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                </t>
+                <t t-else="">
+                    <span t-field="ptav.name"/>
+                    <t t-call="sale.badge_extra_price"/>
+                </t>
+
+            </div>
+        </xpath>
+    </template>
+    <template id="product_description_sale_inherit" inherit_id="website_sale.product">
+        <xpath expr="//p[@t-field='product.description_sale']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="after">
+            <section style="background-color: #f1f1f1;" t-if="product.iframe_url">
+                <div class="container">
+                    <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="480"></iframe>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div class="row s_col_no_bgcolor s_faq_collapse tab_view_product_details mt-4">
+                <div class="col-lg-12">
+                    <div id="myCollapse" class="accordion" role="tablist">
+                        <div class="bg-white tab_div" t-if="product.description_sale">
+                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="true"
+                               class="o_default_snippet_text tab_link" data-parent="#myCollapse"
+                               data-target="#myCollapseTab1557314859907">Product Details
+                            </a>
+                            <div class="collapse show" role="tabpanel" id="myCollapseTab1557314859907">
+                                <div class="card-body pt-0">
+                                    <p t-field="product.description_sale" class="text-muted"/>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-if="len(product.attribute_line_ids)">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#myCollapseTab1557314859910">Specifications
+                                </a>
+                                <div class="collapse" role="tabpanel" id="myCollapseTab1557314859910">
+                                    <div class="card-body pt-0" id="product_specifications">
+                                        <table class="table table-striped table-sm table-hover">
+                                            <tbody>
+                                                <tr t-foreach="product.attribute_line_ids" t-as="spec">
+                                                    <t t-set="inc_val" t-value="0"/>
+                                                    <td>
+                                                        <b>
+                                                            <span t-esc="spec.attribute_id.name"/>
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <t t-foreach="spec.value_ids" t-as="spec_value">
+                                                                <t t-esc="spec_value.name"/>
+                                                                <span t-if="inc_val != len(spec.value_ids)-1">
+                                                                    or
+                                                                </span>
+                                                                <t t-set="inc_val" t-value="inc_val+1"/>
+                                                            </t>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="h4 mt-3 d-flex ml-4" contenteditable="false">
+                <t t-snippet-call="website.s_share">
+                    <t t-set="_exclude_share_links" t-value="['whatsapp', 'linkedin']"/>
+                    <t t-set="_no_title" t-value="True"/>
+                    <t t-set="_classes" t-valuef="text-lg-right"/>
+                    <t t-set="_link_classes" t-valuef="mx-1 my-0"/>
+                </t>
+            </div>
+
+        </xpath>
+
+    </template>
+    <template id="product_quantity_inherit" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="replace">
+            <div class="css_quantity input-group d-inline-flex mr-2 my-1 align-middle" contenteditable="false">
+                <input type="number" class="form-control quantity" data-min="1" name="add_qty"
+                       t-att-value="add_qty or 1"/>
+            </div>
+        </xpath>
+    </template>
+    <record id="website_sale.product_share_buttons" model="ir.ui.view">
+        <field name="active" eval="False"/>
+        <field name="customize_show" eval="False"/>
+    </record>
+
 </odoo>
