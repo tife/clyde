@@ -3,7 +3,7 @@
     'category': 'Website/eCommerce',
     'summary': 'clyde custom.',
     'description': 'clyde custom.',
-    'version': '15.0.1.0.1',
+    'version': '15.0.1.0.2',
     'author': 'Akshar Zalavadiya',
     'data': [
         'views/product_template.xml',
