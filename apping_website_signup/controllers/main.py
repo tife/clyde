@@ -3,9 +3,9 @@
 from odoo import http, _
 from odoo.http import request
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
-        
+
 class AuthSignupHome(AuthSignupHome):
-    
+
     @http.route(website=True, auth="public", sitemap=False, csrf=False)
     def web_login(self, *args, **kw):
         """
@@ -26,13 +26,13 @@ class AuthSignupHome(AuthSignupHome):
                 response.qcontext.update({'message':_('Your login will continue after it approved again..!')})
                 del response.qcontext['error']
         return response
-    
+
     def get_contact_vals(self,company, kw):
         return {
             'company_type': 'person',
-            'parent_id': company.id, 
+            'parent_id': company.id,
             }
-    
+
     @http.route('/web/signup', type='http', auth='public', website=True, csrf=False)
     def web_auth_signup(self, *args, **kw):
         """
@@ -41,8 +41,14 @@ class AuthSignupHome(AuthSignupHome):
         3) Also send emails to all users to approval team.
         """
         response = super(AuthSignupHome, self).web_auth_signup(*args, **kw)
+        response.qcontext['states'] = request.env['res.country.state'].sudo().search([])
+
         if 'error' not in response.qcontext and request.httprequest.method == 'POST':
-            company_ids = request.env['res.partner'].sudo().search([('name', '=', kw['company_name'])])
+            company_ids = request.env['res.partner'].sudo().search(
+                [('name', '=', kw['company_name']), ('abn', '=', kw['abn']), ('street', '=', kw['street']),
+                 ('street2', '=', kw['street2']), ('state_id', '=', kw['state_id']), ('zip', '=', kw['zip']),
+                 ('business_type', '=', kw['business_type']),
+                 ])
             company = [company for company in company_ids if company.company_type == 'company']
             if company:
                company = company[0]
@@ -50,11 +56,26 @@ class AuthSignupHome(AuthSignupHome):
                 if kw['company_name'] != "":
                     company = request.env['res.partner'].sudo().create({
                         'name': kw['company_name'],
-                        'company_type': 'company'
-                        })
+                        'company_type': 'company',
+                        'abn': kw['abn'],
+                        'entity_name': kw['entity_name'] or False,
+                        'street': kw['street'],
+                        'street2': kw['street2'],
+                        'state_id': int(kw['state_id']),
+                        'country_id': request.env['res.country.state'].sudo().browse(int(kw['state_id'])).country_id.id,
+                        'zip': kw['zip'],
+                        'business_type': kw['business_type'],
+                    })
             if kw['company_name'] != "":
+                request.env.user.sudo().write({'name': kw['name'] + ' ' + kw['last_name']})
                 request.env.user.partner_id.sudo().write(
-                    self.get_contact_vals(company,kw)
+                    # self.get_contact_vals(company,kw)
+                    {'company_type': 'person',
+                     'parent_id': company.id,
+                     'demo_title': kw['demo_title'],
+                     'mobile': kw['mobile'],
+                     'phone': kw['phone'],
+                     }
                 )
             get_param = request.env['ir.config_parameter'].sudo().get_param
             if get_param('auth_signup.signup_approval', 'False').lower() == 'true':

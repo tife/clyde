@@ -18,6 +18,7 @@
         'views/template.xml',
         'views/res_config_settings.xml',
         'views/res_users.xml',
+        'views/res_partner.xml',
     ],
     'images': ['static/description/icon.jpg',],
     'installable': True,
