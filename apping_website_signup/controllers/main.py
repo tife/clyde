@@ -46,7 +46,7 @@ class AuthSignupHome(AuthSignupHome):
         if 'error' not in response.qcontext and request.httprequest.method == 'POST':
             company_ids = request.env['res.partner'].sudo().search(
                 [('name', '=', kw['company_name']), ('abn', '=', kw['abn']), ('street', '=', kw['street']),
-                 ('street2', '=', kw['street2']), ('state_id', '=', kw['state_id']), ('zip', '=', kw['zip']),
+                 ('city', '=', kw['city']), ('state_id', '=', kw['state_id']), ('zip', '=', kw['zip']),
                  ('business_type', '=', kw['business_type']),
                  ])
             company = [company for company in company_ids if company.company_type == 'company']
@@ -60,7 +60,7 @@ class AuthSignupHome(AuthSignupHome):
                         'abn': kw['abn'],
                         'entity_name': kw['entity_name'] or False,
                         'street': kw['street'],
-                        'street2': kw['street2'],
+                        'city': kw['city'],
                         'state_id': int(kw['state_id']),
                         'country_id': request.env['res.country.state'].sudo().browse(int(kw['state_id'])).country_id.id,
                         'zip': kw['zip'],
