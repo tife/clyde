@@ -13,18 +13,20 @@
             </a>
         </xpath>
     </template>
-    <template id="product_banner_image_inherit" inherit_id="website_sale.product">
-        <xpath expr="//section[@id='product_detail']" position="before">
-            <section>
-                <div class="container-fluid p-0">
-                    <div class="col-12 p-0">
-                        <img class="img img-fluid w-100" t-if="product.product_banner_image"
-                             t-attf-src="/website/image/product.template/#{product.id}/product_banner_image/1800x1800"/>
+    <!--
+        <template id="product_banner_image_inherit" inherit_id="website_sale.product">
+            <xpath expr="//section[@id='product_detail']" position="before">
+                <section>
+                    <div class="container-fluid p-0">
+                        <div class="col-12 p-0">
+                            <img class="img img-fluid w-100" t-if="product.product_banner_image"
+                                 t-attf-src="/website/image/product.template/#{product.id}/product_banner_image/1800x1800"/>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </xpath>
-    </template>
+                </section>
+            </xpath>
+        </template>
+    -->
     <template id="products_item_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
@@ -64,6 +66,7 @@
             <attribute name="class">d-none</attribute>
         </xpath>
         <xpath expr="//div[@id='product_full_description']" position="after">
+<!--
             <section>
                 <div class="container-fluid p-0">
                     <div class="col-12 p-0">
@@ -71,6 +74,19 @@
                              t-attf-src="/website/image/product.template/#{product.id}/product_details_image/1800x1800"/>
                     </div>
                 </div>
+            </section>
+-->            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_banner_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_banner_image/\')'"/>
+                <div class="o_we_bg_filter"/>
+            </section>
+
+            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_details_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
+                <div class="o_we_bg_filter"/>
             </section>
             <section style="background-color: #f1f1f1;" t-if="product.iframe_url">
                 <div class="container">
