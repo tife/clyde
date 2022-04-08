@@ -20,7 +20,12 @@
         'views/res_users.xml',
         'views/res_partner.xml',
     ],
-    'images': ['static/description/icon.jpg',],
+    'assets': {
+        'web.assets_frontend': [
+            'apping_website_signup/static/src/js/country_onchange.js'
+        ],
+    },
+    'images': ['static/description/icon.jpg', ],
     'installable': True,
     'application': False,
     'auto_install': False,

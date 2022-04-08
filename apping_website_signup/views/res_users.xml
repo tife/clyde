@@ -51,6 +51,24 @@
 					</header>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="replace"/>
+                <xpath expr="//div[hasclass('oe_title')]/group" position="inside">
+					<field name="related_mobile"/>
+					<field name="related_phone"/>
+					<field name="related_business_name"/>
+					<field name="related_abn"/>
+					<field name="related_entity_name"/>
+					<field name="related_street"/>
+					<field name="related_city"/>
+					<field name="related_country_id"/>
+					<field name="related_state"/>
+					<field name="related_post_code"/>
+					<field name="related_business_type"/>
+				</xpath>
+<!--
+				<field name="partner_id" position="after">
+
+				</field>
+-->
             </field>
         </record>
         
