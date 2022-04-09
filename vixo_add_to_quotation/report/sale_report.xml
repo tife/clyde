@@ -19,8 +19,8 @@
             <field name="name">Quotation / Order(Clyde)</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-html</field>
-            <field name="report_name">vixo_add_to_quotation_btn_1.report_saleorder_quotation_clyde</field>
-            <field name="report_file">vixo_add_to_quotation_btn_1.report_saleorder_quotation_clyde</field>
+            <field name="report_name">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
+            <field name="report_file">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
             <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or
                 'Order - %s' % (object.name)
             </field>
@@ -30,7 +30,7 @@
         </record>
         <data noupdate="1">
             <record id="sale.mail_template_sale_confirmation" model="mail.template">
-                <field name="report_template" ref="vixo_add_to_quotation_btn_1.action_report_saleorder_quotation"/>
+                <field name="report_template" ref="vixo_add_to_quotation.action_report_saleorder_quotation"/>
             </record>
         </data>
 
