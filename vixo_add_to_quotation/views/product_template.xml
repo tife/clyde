@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_inherit" inherit_id="website_sale.product">
+        <xpath expr="//a[@id='add_to_cart']" position="replace">
+            <a role="button" id="add_to_cart" t-if="not user_id._is_public()"
+               class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               href="#"><i class="fa fa-shopping-cart mr-2"/>Add To Quotation
+            </a>
+            <a role="button" class="btn btn-primary btn-lg my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
+               t-else=""><i
+                    class="fa fa-bolt mr-2"/>Add to Quotation
+            </a>
+        </xpath>
+    </template>
+    <!--
+        <template id="product_banner_image_inherit" inherit_id="website_sale.product">
+            <xpath expr="//section[@id='product_detail']" position="before">
+                <section>
+                    <div class="container-fluid p-0">
+                        <div class="col-12 p-0">
+                            <img class="img img-fluid w-100" t-if="product.product_banner_image"
+                                 t-attf-src="/website/image/product.template/#{product.id}/product_banner_image/1800x1800"/>
+                        </div>
+                    </div>
+                </section>
+            </xpath>
+        </template>
+    -->
+    <template id="products_item_inherit" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('product_price')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+    </template>
+    <template id="product_price_inherit" inherit_id="website_sale.product_price">
+        <xpath expr="//div[hasclass('product_price', 'mb-3')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+    </template>
+    <template id="payment_inherit" inherit_id="website_sale.payment">
+        <xpath expr="//t[@t-set='submit_button_label']" position="replace">
+            <t t-set="submit_button_label">Confirm Order</t>
+        </xpath>
+    </template>
+    <template id="confirmation_inherit" inherit_id="website_sale.confirmation">
+        <xpath expr="//td[@colspan='2']/t" position="replace">
+        </xpath>
+    </template>
+    <template id="variants_inherit" inherit_id="sale.variants">
+        <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">
+            <div class="radio_input_value custom-control-label">
+                <t t-if="ptav.product_attribute_value_id.attr_image">
+                    <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
+                         t-options='{"style":"max-width: 48px;background-color: #fff;border-radius: 5px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                </t>
+                <t t-else="">
+                    <span t-field="ptav.name"/>
+                    <t t-call="sale.badge_extra_price"/>
+                </t>
+
+            </div>
+        </xpath>
+    </template>
+    <template id="product_description_sale_inherit" inherit_id="website_sale.product">
+        <xpath expr="//p[@t-field='product.description_sale']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="after">
+<!--
+            <section>
+                <div class="container-fluid p-0">
+                    <div class="col-12 p-0">
+                        <img class="img img-fluid w-100" t-if="product.product_details_image"
+                             t-attf-src="/website/image/product.template/#{product.id}/product_details_image/1800x1800"/>
+                    </div>
+                </div>
+            </section>
+-->            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_banner_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_banner_image/\')'"/>
+                <div class="o_we_bg_filter"/>
+            </section>
+
+            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_details_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
+                <div class="o_we_bg_filter"/>
+            </section>
+            <section style="background-color: #f1f1f1;" t-if="product.iframe_url">
+                <div class="container">
+                    <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="480"></iframe>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div class="row s_col_no_bgcolor s_faq_collapse tab_view_product_details mt-4">
+                <div class="col-lg-12">
+                    <div id="myCollapse" class="accordion" role="tablist">
+                        <div class="bg-white tab_div" t-if="product.description_sale">
+                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="true"
+                               class="o_default_snippet_text tab_link" data-parent="#myCollapse"
+                               data-target="#myCollapseTab1557314859907">Product Details
+                            </a>
+                            <div class="collapse show" role="tabpanel" id="myCollapseTab1557314859907">
+                                <div class="card-body pt-0">
+                                    <p t-field="product.description_sale" class="text-muted"/>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-if="product.specification">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#myCollapseTab1557314859910">Specifications
+                                </a>
+                                <div class="collapse" role="tabpanel" id="myCollapseTab1557314859910">
+                                    <div class="card-body pt-0" id="product_specifications">
+                                        <p t-field="product.specification" class="text-muted"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="h4 mt-3 d-flex ml-4" contenteditable="false">
+                <t t-snippet-call="website.s_share">
+                    <t t-set="_exclude_share_links" t-value="['whatsapp', 'linkedin']"/>
+                    <t t-set="_no_title" t-value="True"/>
+                    <t t-set="_classes" t-valuef="text-lg-right"/>
+                    <t t-set="_link_classes" t-valuef="mx-1 my-0"/>
+                </t>
+            </div>
+            <div>
+                <a class="btn  btn-primary m-3" t-if="product.product_attachment"
+                   t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
+                    Product Attachment
+                    <span
+                            class="fa fa-download"/>
+                </a>
+            </div>
+
+        </xpath>
+
+    </template>
+    <template id="product_quantity_inherit" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="replace">
+            <div class="css_quantity input-group d-inline-flex mr-2 my-1 align-middle" contenteditable="false">
+                <input type="number" class="form-control quantity" data-min="1" name="add_qty"
+                       t-att-value="add_qty or 1"/>
+            </div>
+        </xpath>
+    </template>
+    <record id="website_sale.product_share_buttons" model="ir.ui.view">
+        <field name="active" eval="False"/>
+        <field name="customize_show" eval="False"/>
+    </record>
+
+</odoo>
