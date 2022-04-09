@@ -167,7 +167,7 @@ msgstr "Rekisteröinnin hyväksynnän käyttäjä"
 #. module: vixo_website_signup
 #: code:addons/vixo_website_signup/controllers/controllers.py:74
 #, python-format
-msgid "Thank you, We get your signup request, We will contact you shortly.."
+msgid "Thank you! Clyde is now processing your trade account application. You will receive an email within one business day confirming your account."
 msgstr "Kiitos, saamme ilmoittautumispyyntösi, otamme sinuun yhteyttä pian .."
 
 #. module: vixo_website_signup
@@ -208,7 +208,7 @@ msgstr "Tervetuloa ${object.company_id.name}!"
 #. module: vixo_website_signup
 #: code:addons/vixo_website_signup/controllers/controllers.py:28
 #, python-format
-msgid "You can login only after your login get approved..!"
+msgid "Clyde is currently reviewing your trade account application."
 msgstr "Voit kirjautua sisään vasta, kun kirjautumistunnuksesi on hyväksytty ..!"
 
 #. module: vixo_website_signup

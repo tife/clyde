@@ -21,7 +21,7 @@ class AuthSignupHome(AuthSignupHome):
             inactive_user = request.env['res.users'].sudo().search(
                 [('login', '=', response.qcontext.get('login')), ('active', '=', False), ('approved_date', '=', False)])
             if inactive_user:
-                response.qcontext.update({'message': _('You can login only after your login get approved..!')})
+                response.qcontext.update({'message': _('Clyde is currently reviewing your trade account application.')})
                 del response.qcontext['error']
             reinactive_user = request.env['res.users'].sudo().search(
                 [('login', '=', response.qcontext.get('login')), ('active', '=', False),
@@ -108,7 +108,7 @@ class AuthSignupHome(AuthSignupHome):
                         email_to=','.join(channel_for_approval.mapped('group_ids').mapped('users').mapped('email'))
                     ).send_mail(request.env.user.id, force_send=True)
                 response = request.render('web.login', {
-                    'message': _("Thank you, We get your signup request, We will contact you shortly..")})
+                    'message': _("Thank you! Clyde is now processing your trade account application. You will receive an email within one business day confirming your account.")})
                 response.headers['X-Frame-Options'] = 'DENY'
                 request.session.logout(keep_db=True)
         return response
