@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']/group[@name='sale']" position="inside">
+                <group name="product_banner_image" string="Product Banner Image">
+                    <field name="product_banner_image" widget="image" class="oe_avatar"/>
+                </group>
+                <group name="product_details_image" string="Product Detail Image(Bottom)">
+                    <field name="product_details_image" widget="image" class="oe_avatar"/>
+                </group>
+            </xpath>
+            <field name="website_ribbon_id" position="after">
+                <field name="iframe_url"/>
+                <field name="specification"/>
+                <field name="product_attachment"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
