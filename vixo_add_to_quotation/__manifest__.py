@@ -9,6 +9,7 @@
         'views/product_template.xml',
         'views/product_template_views.xml',
         'views/attribute_value_views.xml',
+        'views/cart_template.xml',
         'report/sale_report.xml',
         'report/sale_report_template.xml',
     ],
