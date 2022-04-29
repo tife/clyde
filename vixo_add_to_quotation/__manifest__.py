@@ -1,8 +1,8 @@
 {
     'name': 'Add to quotation',
     'category': 'Website/eCommerce',
-    'summary': 'Clyde eshop customisation',
-    'description': 'Update quotation template. Add to quotation function. Email quotation to customer upon checkout',
+    'summary': 'clyde custom.',
+    'description': 'Update quotation template. Add to quotation function. Email quotation to customer upon checkout. Product Detail Page',
     'version': '15.0.1.0.2',
     'author': 'Vixo Digital',
     'data': [
