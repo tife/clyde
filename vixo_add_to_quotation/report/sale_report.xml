@@ -21,9 +21,7 @@
             <field name="report_type">qweb-html</field>
             <field name="report_name">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
             <field name="report_file">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
-            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or
-                'Order - %s' % (object.name)
-            </field>
+            <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
             <field name="paperformat_id" ref="quotation_for_clyde"/>
