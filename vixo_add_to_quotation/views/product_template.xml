@@ -139,7 +139,25 @@
             <div>
                 <a class="btn  btn-primary m-3" t-if="product.product_attachment"
                    t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
-                    Product Attachment
+                    Specification Sheet
+                    <span
+                            class="fa fa-download"/>
+                </a>
+                <a class="btn  btn-primary m-3" t-if="product.product_attachment_dwg"
+                   t-att-href="'/web/content/product.template/%s/product_attachment_dwg?download=true' % product.id">
+                    DWG
+                    <span
+                            class="fa fa-download"/>
+                </a>
+                <a class="btn  btn-primary m-3" t-if="product.product_attachment_3ds"
+                   t-att-href="'/web/content/product.template/%s/product_attachment_3ds?download=true' % product.id">
+                    3DS
+                    <span
+                            class="fa fa-download"/>
+                </a>
+                <a class="btn  btn-primary m-3" t-if="product.product_attachment_fbx"
+                   t-att-href="'/web/content/product.template/%s/product_attachment_fbx?download=true' % product.id">
+                    FBX
                     <span
                             class="fa fa-download"/>
                 </a>

@@ -17,6 +17,9 @@
                 <field name="iframe_url"/>
                 <field name="specification"/>
                 <field name="product_attachment"/>
+                <field name="product_attachment_dwg"/>
+                <field name="product_attachment_3ds"/>
+                <field name="product_attachment_fbx"/>
             </field>
         </field>
     </record>

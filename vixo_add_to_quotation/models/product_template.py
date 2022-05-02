@@ -8,5 +8,8 @@ class ProductTemplate(models.Model):
     iframe_url = fields.Char('3D Image Url')
     specification = fields.Html()
     product_details_image = fields.Binary(string='Product Detail Image(Bottom)')
-    product_attachment = fields.Binary(string='Product Attachment')
+    product_attachment = fields.Binary(string='Specification Sheet')
+    product_attachment_dwg = fields.Binary(string='DWG')
+    product_attachment_3ds = fields.Binary(string='3DS')
+    product_attachment_fbx = fields.Binary(string='FBX')
 
