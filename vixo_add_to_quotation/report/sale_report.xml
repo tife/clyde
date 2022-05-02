@@ -18,7 +18,7 @@
         <record id="action_report_saleorder_quotation" model="ir.actions.report">
             <field name="name">Quotation / Order(Clyde)</field>
             <field name="model">sale.order</field>
-            <field name="report_type">qweb-html</field>
+            <field name="report_type">qweb-pdf</field>
             <field name="report_name">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
             <field name="report_file">vixo_add_to_quotation.report_saleorder_quotation_clyde</field>
             <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
