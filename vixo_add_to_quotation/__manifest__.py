@@ -22,7 +22,8 @@
             'vixo_add_to_quotation/static/src/scss/sale_report.scss',
         ],
         'web.assets_frontend': [
-            'vixo_add_to_quotation/static/src/scss/website.scss'
+            'vixo_add_to_quotation/static/src/scss/website.scss',
+            'vixo_add_to_quotation/static/src/js/payment_status.js',
         ],
     },
     'demo': [
