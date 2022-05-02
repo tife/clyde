@@ -39,7 +39,7 @@
     </template>
     <template id="payment_inherit" inherit_id="website_sale.payment">
         <xpath expr="//t[@t-set='submit_button_label']" position="replace">
-            <t t-set="submit_button_label">Confirm Order</t>
+            <t t-set="submit_button_label">Confirm Quotation</t>
         </xpath>
     </template>
     <template id="confirmation_inherit" inherit_id="website_sale.confirmation">
