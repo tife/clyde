@@ -66,26 +66,33 @@
             <attribute name="class">d-none</attribute>
         </xpath>
         <xpath expr="//div[@id='product_full_description']" position="after">
-<!--
-            <section>
-                <div class="container-fluid p-0">
-                    <div class="col-12 p-0">
-                        <img class="img img-fluid w-100" t-if="product.product_details_image"
-                             t-attf-src="/website/image/product.template/#{product.id}/product_details_image/1800x1800"/>
-                    </div>
-                </div>
-            </section>
--->            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
-                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_banner_image"
-                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
-                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_banner_image/\')'"/>
+            <!--
+                        <section>
+                            <div class="container-fluid p-0">
+                                <div class="col-12 p-0">
+                                    <img class="img img-fluid w-100" t-if="product.product_details_image"
+                                         t-attf-src="/website/image/product.template/#{product.id}/product_details_image/1800x1800"/>
+                                </div>
+                            </div>
+                        </section>
+            -->
+            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover"
+                     t-if="product.product_banner_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;"
+                     data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg"
+                      t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_banner_image/\')'"/>
                 <div class="o_we_bg_filter"/>
             </section>
 
             <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
-                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" t-if="product.product_details_image"
-                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;" data-original-title="" title="" aria-describedby="tooltip565274">
-                <span class="s_parallax_bg oe_img_bg" t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover"
+                     t-if="product.product_details_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;"
+                     data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg"
+                      t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
                 <div class="o_we_bg_filter"/>
             </section>
             <section style="background-color: #f1f1f1;" t-if="product.iframe_url">
@@ -174,6 +181,18 @@
             </div>
         </xpath>
     </template>
+<!--
+    <template id="sale_order_portal_template_inherit" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//a[hasclass('o_download_btn')]" position="replace">
+            <t t-esc="sale_order.get_portal_url(report_type='pdf', download=True)"/>
+            <a class="btn btn-secondary btn-block o_download_btn"
+               t-att-href="sale_order.get_portal_url(report_type='pdf', download=True)" title="Download">
+                <i class="fa fa-download"/>
+                Download
+            </a>
+        </xpath>
+    </template>
+-->
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
         <field name="customize_show" eval="False"/>

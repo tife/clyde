@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="cart_inherit" inherit_id="website_sale.cart">
-    <!--
-        <xpath expr="//a[@href='/shop/checkout?express=1']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1">
-                <span class="">Process Quotation</span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-        <xpath expr="//div[@id='o_cart_summary']/div/a[@href='/shop/checkout?express=1']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="/shop/checkout?express=1">
-                <span class="">Process Quotation</span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-    -->
+        <!--
+            <xpath expr="//a[@href='/shop/checkout?express=1']" position="replace">
+                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1">
+                    <span class="">Process Quotation</span>
+                    <span class="fa fa-chevron-right"/>
+                </a>
+            </xpath>
+            <xpath expr="//div[@id='o_cart_summary']/div/a[@href='/shop/checkout?express=1']" position="replace">
+                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="/shop/checkout?express=1">
+                    <span class="">Process Quotation</span>
+                    <span class="fa fa-chevron-right"/>
+                </a>
+            </xpath>
+        -->
         <xpath expr="//span[text()='Process Checkout']" position="replace">
             <span class="">Process Quotation</span>
         </xpath>
@@ -48,8 +48,25 @@
     <template id="payment_footer_inherit" inherit_id="website_sale.payment_footer">
         <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a role="button" href="/shop/cart" class="btn btn-secondary">
-                <i class="fa fa-chevron-left"/> Return to Products
+                <i class="fa fa-chevron-left"/>
+                Return to Products
             </a>
+        </xpath>
+    </template>
+    <template id="cart_lines_inherit" inherit_id="website_sale.cart_lines">
+        <xpath expr="//t[@t-call='website_sale.cart_line_description_following_lines']" position="after">
+            <div>
+                <textarea class="form-control" id="customer_note" name="customer_note"
+                          t-att-data-order_line_id="line.id" rows="4" cols="50" placeholder="Customer Notes:"><t t-esc="line.customer_note"/></textarea>
+                <input class="form-control" id="customer_ref" name="customer_ref" t-att-data-order_line_id="line.id"
+                       placeholder="Customer Ref." t-att-value="line.customer_ref"/>
+            </div>
+        </xpath>
+        <xpath expr="//table[@id='cart_products']" position="after">
+            <div class="mb-2 mt-2">
+                <input class="form-control" id="order_project_name" name="order_project_name" t-att-data-order_id="line.order_id.id"
+                       placeholder="Project Name" t-att-value="line.order_id.project_name"/>
+            </div>
         </xpath>
     </template>
 
