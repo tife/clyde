@@ -4,7 +4,7 @@
         <xpath expr="//a[@id='add_to_cart']" position="replace">
             <a role="button" id="add_to_cart" t-if="not user_id._is_public()"
                class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
-               href="#"><i class="fa fa-shopping-cart mr-2"/>Add To Quotation
+               href="#"><i class="fa fa-file-text mr-2"/>Add To Quotation
             </a>
             <a role="button" class="btn btn-primary btn-lg my-1 mr-1 px-5 font-weight-bold flex-grow-1"
                t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"

@@ -70,4 +70,16 @@
         </xpath>
     </template>
 
+    <template id="header_cart_link" inherit_id="website_sale.header_cart_link">
+        <xpath expr="//i[hasclass('fa-shopping-cart')]" position="replace">
+            <i t-if="_icon" class="fa fa-file-text"/>
+        </xpath>
+    </template>
+
+    <template id="products_add_to_cart_inherit" inherit_id="website_sale.products_add_to_cart">
+        <xpath expr="//span[hasclass('fa-shopping-cart')]" position="replace">
+            <span class="fa fa-file-text"/>
+        </xpath>
+    </template>
+
 </odoo>
