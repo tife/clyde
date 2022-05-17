@@ -15,6 +15,14 @@
                 </a>
             </xpath>
         -->
+        <xpath expr="//div[hasclass('clearfix')]" position="before">
+            <div class="mb-2 mt-2">
+                <t t-set="project_val" t-value="website_sale_order.website_order_line and website_sale_order.project_name or ''"/>
+                <input class="form-control" id="order_project_name" name="order_project_name"
+                       t-att-data-order_id="website_sale_order.id" t-if="website_sale_order.website_order_line"
+                       placeholder="Project Name" t-att-value="project_val"/>
+            </div>
+        </xpath>
         <xpath expr="//span[text()='Process Checkout']" position="replace">
             <span class="">Process Quotation</span>
         </xpath>
@@ -72,12 +80,6 @@
                           t-att-data-order_line_id="line.id" rows="4" cols="50" placeholder="Customer Notes:"><t t-esc="line.customer_note"/></textarea>
                 <input class="form-control" id="customer_ref" name="customer_ref" t-att-data-order_line_id="line.id"
                        placeholder="Customer Ref." t-att-value="line.customer_ref"/>
-            </div>
-        </xpath>
-        <xpath expr="//table[@id='cart_products']" position="after">
-            <div class="mb-2 mt-2">
-                <input class="form-control" id="order_project_name" name="order_project_name" t-att-data-order_id="line.order_id.id"
-                       placeholder="Project Name" t-att-value="line.order_id.project_name"/>
             </div>
         </xpath>
     </template>
