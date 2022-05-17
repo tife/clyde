@@ -49,10 +49,22 @@
         <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a role="button" href="/shop/cart" class="btn btn-secondary">
                 <i class="fa fa-chevron-left"/>
-                Return to Products
+                Back
             </a>
         </xpath>
     </template>
+
+    <template id="checkout_inherit" inherit_id="website_sale.checkout">
+        <xpath expr="//span[text()='Return to Cart']" position="replace">
+            <span>Back</span>
+        </xpath>
+
+        <xpath expr="//span[text()='Confirm']" position="replace">
+            <span>Confirm Quotation</span>
+        </xpath>
+
+    </template>
+
     <template id="cart_lines_inherit" inherit_id="website_sale.cart_lines">
         <xpath expr="//t[@t-call='website_sale.cart_line_description_following_lines']" position="after">
             <div>
