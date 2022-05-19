@@ -40,5 +40,16 @@
             </xpath>
         </field>
     </record>
+    <record id="product_public_category_form_view_extend" model="ir.ui.view">
+        <field name="name">product.public.category.form.extend</field>
+        <field name="model">product.public.category</field>
+        <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="show_in_header"/>
+            </xpath>
+        </field>
+    </record>
+
 
 </odoo>

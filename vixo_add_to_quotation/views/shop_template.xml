@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="products_inherit" inherit_id="website_sale.products" name="Products">
+        <xpath expr="//table" position="replace">
+            <div class="product-list grid-view-items">
+                <div class="row">
+                    <!--
+                                        <t t-if="products">
+                                            <t t-foreach="products" t-as="product">
+                                                <div class="col-md-3 col-sm-6 single-product-view col-6"
+                                                     style="padding-right: 10px;padding-left: 10px;">
+                                                    <t t-call="website_sale.products_item"/>
+                                                </div>
+                                            </t>
+                                        </t>
+                    -->
+                    <tr t-foreach="bins" t-as="tr_product">
+                        <t t-foreach="tr_product" t-as="td_product">
+                            <t t-if="td_product">
+                                <t t-set="product" t-value="td_product['product']"/>
+                                <!-- We use t-attf-class here to allow easier customization -->
+                                <div class="col-md-3 col-sm-6 single-product-view col-6"
+                                     style="padding: 10px;">
+                                    <div t-attf-class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
+                                        <t t-call="website_sale.products_item">
+                                            <t t-set="product_image_big"
+                                               t-value="td_product['x'] + td_product['y'] &gt; 2"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                            <div t-else=""/>
+                        </t>
+                    </tr>
+                </div>
+            </div>
+            <table></table>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="attributes">
+            <attribute name="class">oe_website_sale container-fluid container-shop</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('o_wsale_products_main_row')]" position="attributes">
+            <attribute name="class">o_wsale_products_main_row</attribute>
+        </xpath>
+        <xpath expr="//div[@id= 'products_grid_before']" position="attributes">
+            <attribute name="class">col-lg-2</attribute>
+        </xpath>
+    </template>
+    <template id="products_item_inherit" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('oe_product_image')]" position="replace">
+            <div class="card-body p-1 oe_product_image">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <a t-att-href="product_href" class="d-block h-100" itemprop="url">
+                    <t t-set="image_holder" t-value="product._get_image_holder()"/>
+                    <!--
+                                        <span t-field="image_holder.image_1920"
+                                              t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_256', 'itemprop': 'image'}"
+                                              class="d-flex h-100 justify-content-center align-items-center"/>
+                    -->
+                    <!--
+                                        <img t-if="product.image_1024"
+                                             t-att-src="'data:image/png;base64,%s' % to_text(product.image_1024)"
+                                             class="img img-fluid"/>
+                    -->
+                    <img t-att-class="'img img-responsive img-fluid pic-1' if product.product_template_image_ids else 'img img-responsive img-fluid'"
+                         t-att-src="website.image_url(product,'image_1024')"/>
+                    <t t-if="product.product_template_image_ids">
+                        <t t-set="extra_image_id" t-value="product.product_template_image_ids[0]"/>
+
+                        <img t-if="product.product_template_image_ids" class="img img-responsive img-fluid pic-2"
+                             t-att-src="website.image_url(extra_image_id,'image_1024')"/>
+                    </t>
+                </a>
+            </div>
+
+        </xpath>
+    </template>
+
+</odoo>
