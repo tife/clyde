@@ -1,0 +1,34 @@
+.hover-sec-image .container, .hover-sec-image .container-small {
+    max-width: 100%;
+}
+
+.hover-sec-image .card {
+    border-radius: 0;
+    padding: 0 !important;
+}
+
+.hover-sec-image .card .card-img-top {
+    height: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.hover-sec-image .carousel-inner .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hover-sec-image .col-3 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.hover-sec-image .h6.card-title {
+    color: black;
+    margin-bottom: 0;
+}
+
+.hover-sec-image .card span.font-weight-bold {
+    font-weight: 100 !important;
+    color: #757575;
+}

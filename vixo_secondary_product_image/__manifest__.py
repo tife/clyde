@@ -10,4 +10,9 @@
     'data': [
         'template.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'vixo_secondary_product_image/static/src/scss/hover_sec_image.scss',
+        ],
+    },
 }
