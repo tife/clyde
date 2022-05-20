@@ -96,4 +96,14 @@
         </xpath>
     </template>
 
+    <template id="address_inherit" inherit_id="website_sale.address">
+        <xpath expr="//t[@t-foreach='countries']" position="replace">
+            <t t-foreach="countries.filtered(lambda c: c.id == 13 or c.id == 170)" t-as="c">
+                <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)">
+                    <t t-esc="c.name"/>
+                </option>
+            </t>
+        </xpath>
+    </template>
+
 </odoo>

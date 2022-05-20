@@ -110,7 +110,7 @@
                         t-att-readonly="'readonly' if only_passwords else None"
                         t-att-autofocus="'autofocus' if login and not only_passwords else None">
                     <option value="">Country</option>
-                    <t t-foreach="countries or []" t-as="country">
+                    <t t-foreach="countries.filtered(lambda c: c.id == 13 or c.id == 170) or []" t-as="country">
                         <option t-att-value="country.id">
                             <t t-esc="country.name"/>
                         </option>
