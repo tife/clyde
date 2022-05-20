@@ -34,7 +34,7 @@
                             </t>
                         </t>
             -->
-            <div class="page">
+            <div class="page klyde-quotation">
                 <div class="oe_structure"/>
                 <div class="row" style="padding-bottom: 18px;">
                     <div class="col-9" style="font-size: 11px;">
@@ -69,7 +69,7 @@
                              src="/vixo_add_to_quotation/static/src/img/imgpsh_fullsize_anim_gr.png"/>
                     </div>
                 </div>
-                <div class="row mt32 mb32" id="informations">
+                <div class="row mt10 mb32" id="informations">
                     <div class="col-9" style="font-size: 10px;">
 
                         <div class="row">
@@ -93,7 +93,7 @@
                                     Project Name
                                 </p>
                             </div>
-                            <div class="col-7 pl-0">
+                            <div class="col-7 pl-5">
                                 <p class="m-0" t-if="doc.validity_date">
                                     <b>
                                         <span t-field="doc.validity_date" t-options='{"format": "dd MMM yyyy"}'/>
