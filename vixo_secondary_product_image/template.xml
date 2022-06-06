@@ -51,5 +51,9 @@
 								
 			</t>
         </xpath>
-    </template>
+
+        <xpath expr="//t[@t-call='website_sale.price_dynamic_filter_template_product_product']" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+	</template>
 </odoo>
