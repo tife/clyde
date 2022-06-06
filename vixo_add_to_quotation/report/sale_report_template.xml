@@ -257,7 +257,7 @@
                                                     <t t-if="product_template_variant_value_id.attribute_line_id.attribute_id.display_type == 'radio'">
                                                         <t t-if="product_template_variant_value_id.product_attribute_value_id.attr_image">
                                                             <img t-att-src="image_data_uri(product_template_variant_value_id.product_attribute_value_id.attr_image)"
-                                                                 style="max-height: 3cm; max-width: 3cm;"/>
+                                                                 style="max-height: 2cm; max-width: 2cm;"/>
                                                         </t>
                                                         <t t-else="">
                                                             <t t-esc="product_template_variant_value_id.product_attribute_value_id.name"/>
