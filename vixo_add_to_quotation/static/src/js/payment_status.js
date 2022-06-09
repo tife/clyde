@@ -1,4 +1,4 @@
-odoo.define('vido_add_to_quotation.post_processing', function (require){
+odoo.define('vixo_add_to_quotation.post_processing', function (require){
     "use strict";
     // require original module JS
     //var payment = require('payment.post_processing');

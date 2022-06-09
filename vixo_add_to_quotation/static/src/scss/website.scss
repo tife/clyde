@@ -81,8 +81,15 @@
 }
 
 .o_website_sale_animate {
+    display: none !important;
+}
+.o_red_highlight {
     display: none;
 }
+.o_shadow_animation {
+    display: none;
+}
+
 #products_grid{
     .products_header.form-inline{
         display:none;
