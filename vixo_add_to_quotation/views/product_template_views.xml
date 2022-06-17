@@ -22,7 +22,12 @@
                 <field name="product_attachment_fbx"/>
             </field>
             <field name="description_sale" position="after">
+                <field name="dimension_image" widget="image" class="oe_avatar"/>
+                <field name="care_instructions"/>
+                <field name="assembly_instructions"/>
+                <field name="materials"/>
                 <field name="dimension"/>
+                <field name="lead_time"/>
             </field>
         </field>
     </record>
@@ -48,6 +53,16 @@
             <xpath expr="//field[@name='sequence']" position="after">
                 <field name="show_in_header"/>
             </xpath>
+        </field>
+    </record>
+    <record id="view_website_form_view_inherit" model="ir.ui.view">
+        <field name="name">website.modal.form.inherit</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <field name="default_lang_id" position="after">
+                <field name="custom_enquiries"/>
+            </field>
         </field>
     </record>
 

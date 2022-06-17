@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="product_inherit" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="attributes">
+            <attribute name="t-attf-class">container-fluid py-4 oe_website_sale
+                #{'discount' if combination_info['has_discounted_price'] else ''}
+            </attribute>
+        </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="replace">
             <a role="button" id="add_to_cart" t-if="not user_id._is_public()"
                class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
-               href="#"><i class="fa fa-file-text mr-2"/>Add To Quotation
+               href="#">Add To Quotation
             </a>
             <a role="button" class="btn btn-primary btn-lg my-1 mr-1 px-5 font-weight-bold flex-grow-1"
                t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
-               t-else=""><i
-                    class="fa fa-bolt mr-2"/>Add to Quotation
+               t-else="">Add to Quotation
+            </a>
+            <a class="ml-2" t-att-href="request.website.custom_enquiries" target="_blank"
+               style="text-decoration: underline;color: black;font-size: 22px;">Custom Enquiries
             </a>
         </xpath>
     </template>
@@ -47,11 +54,39 @@
         </xpath>
     </template>
     <template id="variants_inherit" inherit_id="sale.variants">
+        <xpath expr="//strong" position="after">
+            <t t-if="ptal.attribute_id.display_type == 'radio'">
+                <t t-foreach="ptal.product_template_value_ids._only_active()" t-as="ptav">
+                    <span class="attribute_class"  t-att-data-value_id="ptav.id">
+                        <strong style="font-size: 1.3rem;">
+                            |
+                            <t t-esc="ptav.name"/>
+                        </strong>
+                    </span>
+                </t>
+            </t>
+            <br/>
+        </xpath>
         <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">
             <div class="radio_input_value custom-control-label">
                 <t t-if="ptav.product_attribute_value_id.attr_image">
                     <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
-                         t-options='{"style":"max-width: 48px;background-color: #fff;border-radius: 5px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                         data-toggle="modal" t-attf-data-target="#attribute_#{ptav.product_attribute_value_id.id}"
+                         t-options='{"style":"max-width: 70px;background-color: #fff;border-radius: 64px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                    <div class="modal fade" t-attf-id="attribute_#{ptav.product_attribute_value_id.id}" tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content" style="background: transparent;border: 0;">
+                                <div class="modal-body">
+                                    <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
+                                         data-toggle="modal" class="text-center"
+                                         t-attf-data-target="#attribute_#{ptav.product_attribute_value_id.id}"
+                                         t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name"}'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </t>
                 <t t-else="">
                     <span t-field="ptav.name"/>
@@ -95,9 +130,13 @@
                       t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
                 <div class="o_we_bg_filter"/>
             </section>
-            <section style="background-color: #f1f1f1;" t-if="product.iframe_url">
-                <div class="container">
-                    <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="480"></iframe>
+            <section t-if="product.iframe_url">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="650"></iframe>
+                        </div>
+                    </div>
                 </div>
             </section>
         </xpath>
@@ -119,19 +158,109 @@
                                 </div>
                             </div>
                         </div>
-                        <t t-if="product.specification">
+                        <t t-if="product.dimension_image">
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
-                                   data-target="#myCollapseTab1557314859910">Specifications
+                                   data-target="#dimension_image">Dimension
                                 </a>
-                                <div class="collapse" role="tabpanel" id="myCollapseTab1557314859910">
-                                    <div class="card-body pt-0" id="product_specifications">
-                                        <p t-field="product.specification" class="text-muted"/>
+                                <div class="collapse" role="tabpanel" id="dimension_image">
+                                    <div class="card-body pt-0" id="dimension_image">
+                                        <img class="img img-fluid w-100" t-if="product.dimension_image"
+                                             t-attf-src="/website/image/product.template/#{product.id}/dimension_image/1800x1800"/>
                                     </div>
                                 </div>
                             </div>
                         </t>
+                        <t t-if="product.materials">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#materials">Materials
+                                </a>
+                                <div class="collapse" role="tabpanel" id="materials">
+                                    <div class="card-body pt-0" id="materials">
+                                        <p t-field="product.materials" class="text-muted"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="product.care_instructions">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   style="color: black;font-size: 22px;"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#care_instructions">Care Instructions
+                                </a>
+                                <div class="collapse" role="tabpanel" id="care_instructions">
+                                    <div class="card-body pt-0" id="care_instructions">
+                                        <a class="ml-2" t-att-href="product.care_instructions" target="_blank"
+                                           style="text-decoration: underline;color: black;font-size: 16px;">Care
+                                            Instructions
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="product.assembly_instructions">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   style="color: black;font-size: 22px;"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#assembly_instructions">Assembly Instructions
+                                </a>
+                                <div class="collapse" role="tabpanel" id="assembly_instructions">
+                                    <div class="card-body pt-0" id="assembly_instructions">
+                                        <a class="btn  btn-primary m-3" t-if="product.assembly_instructions"
+                                           style="text-decoration: underline;color: black;font-size: 16px;"
+                                           t-att-href="'/web/content/product.template/%s/assembly_instructions?download=true' % product.id">
+                                            Assembly
+                                            Instructions
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="bg-white tab_div">
+                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                               style="color: black;font-size: 22px;"
+                               class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                               data-target="#download">Download
+                            </a>
+                            <div class="collapse" role="tabpanel" id="download">
+                                <div class="card-body pt-0" id="download">
+                                    <div>
+                                        <a class="btn  btn-primary m-3" t-if="product.product_attachment"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
+                                            Specification Sheet
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+                                        <a class="btn  btn-primary m-3" t-if="product.product_attachment_dwg"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_dwg?download=true' % product.id">
+                                            DWG
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+                                        <a class="btn  btn-primary m-3" t-if="product.product_attachment_3ds"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_3ds?download=true' % product.id">
+                                            3DS
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+                                        <a class="btn  btn-primary m-3" t-if="product.product_attachment_fbx"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_fbx?download=true' % product.id">
+                                            FBX
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,24 +304,35 @@
     </template>
     <template id="product_quantity_inherit" inherit_id="website_sale.product_quantity">
         <xpath expr="//div[hasclass('css_quantity')]" position="replace">
+            <p class="text-black">Quantity</p>
             <div class="css_quantity input-group d-inline-flex mr-2 my-1 align-middle" contenteditable="false">
                 <input type="number" class="form-control quantity" data-min="1" name="add_qty"
                        t-att-value="add_qty or 1"/>
             </div>
+            <div t-if="product.lead_time">
+                <p class="mb-0">
+                    <b>
+                        Lead Time
+                    </b>
+                    <p class="text-muted">
+                        <t t-esc="product.lead_time"/>
+                    </p>
+                </p>
+            </div>
         </xpath>
     </template>
-<!--
-    <template id="sale_order_portal_template_inherit" inherit_id="sale.sale_order_portal_template">
-        <xpath expr="//a[hasclass('o_download_btn')]" position="replace">
-            <t t-esc="sale_order.get_portal_url(report_type='pdf', download=True)"/>
-            <a class="btn btn-secondary btn-block o_download_btn"
-               t-att-href="sale_order.get_portal_url(report_type='pdf', download=True)" title="Download">
-                <i class="fa fa-download"/>
-                Download
-            </a>
-        </xpath>
-    </template>
--->
+    <!--
+        <template id="sale_order_portal_template_inherit" inherit_id="sale.sale_order_portal_template">
+            <xpath expr="//a[hasclass('o_download_btn')]" position="replace">
+                <t t-esc="sale_order.get_portal_url(report_type='pdf', download=True)"/>
+                <a class="btn btn-secondary btn-block o_download_btn"
+                   t-att-href="sale_order.get_portal_url(report_type='pdf', download=True)" title="Download">
+                    <i class="fa fa-download"/>
+                    Download
+                </a>
+            </xpath>
+        </template>
+    -->
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
         <field name="customize_show" eval="False"/>

@@ -9,10 +9,18 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
             'change #customer_note': '_onChangeCustomerNote',
             'change #customer_ref': '_onChangeCustomerRef',
             'change #order_project_name': '_onChangeProjectName',
+            'change .custom-control-input.js_variant_change': '_onChangeAttributes',
         },
 
         init: function () {
             this._super.apply(this, arguments);
+             setTimeout(function () {
+                if($('input:checked', '.custom-control.custom-radio')){
+                    $('input:checked', '.custom-control.custom-radio').each(function( index,e ) {
+                        $("span.attribute_class[data-value_id='" + $(this).val() + "']").show();
+                    });
+                }}, 1000);
+
         },
 
         _onChangeCustomerNote: function (ev) {
@@ -30,12 +38,15 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
             })
         },
         _onChangeProjectName: function (ev) {
-        console.log(">>>>>>>>>>Dsadas")
             ajax.jsonRpc("/update/project/name", 'call', {
                 'sale_order_id': $(ev.currentTarget).data('order_id'),
                 'value': $(ev.currentTarget).val(),
             }).then(function (data) {
             })
+        },
+        _onChangeAttributes: function (ev) {
+            $($(ev.target).parent().parent().parent().parent().parent()).find('.attribute_class').hide()
+            $("span.attribute_class[data-value_id='" + $(ev.target).val() + "']").show();
         },
     });
 

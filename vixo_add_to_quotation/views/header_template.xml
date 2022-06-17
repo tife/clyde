@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="layout_inherit" inherit_id="website.navbar_nav">
+        <xpath expr="//ul[@id='top_menu']" position="before">
+                <a href="/" t-attf-class="header-logo-scroll navbar-brand logo #{_link_class}">
+                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
+                      t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+            </a>
+        </xpath>
+    </template>
+</odoo>
