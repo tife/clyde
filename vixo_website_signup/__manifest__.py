@@ -22,7 +22,8 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            'vixo_website_signup/static/src/js/country_onchange.js'
+            'vixo_website_signup/static/src/js/country_onchange.js',
+            'vixo_website_signup/static/src/scss/vixo_website_signup.scss',
         ],
     },
     'installable': True,
