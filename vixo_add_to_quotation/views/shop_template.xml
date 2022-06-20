@@ -76,4 +76,11 @@
         </xpath>
     </template>
 
+    <template id="web_layout_inherit" inherit_id="web.layout">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&amp;display=swap" rel="stylesheet"/>
+        </xpath>
+    </template>
 </odoo>
