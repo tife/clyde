@@ -170,7 +170,7 @@ input#customer_ref{
 }
 @media (min-width: 992px){
     header .o_header_centered_logo {
-      width: 35%;
+      width: 30%;
     }
 }
 #oe_structure_header_vertical_3{
@@ -179,7 +179,7 @@ input#customer_ref{
 #top_menu_container{
     .justify-content-between.flex-wrap{
         padding: 12px 0;
-        border-bottom:1px solid #4d4d4d;
+        border-bottom:1px solid #CED4DA;
     }
 }
 .o_header_affixed{
@@ -226,6 +226,7 @@ header .navbar-brand.logo img {
     }
     .nav-link {
         padding: 0px 1rem;
+		font-size: 16pt;
     }
 }
 .clyde_footer_share_icon{
