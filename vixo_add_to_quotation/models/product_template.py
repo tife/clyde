@@ -16,6 +16,11 @@ class ProductTemplate(models.Model):
     product_attachment_3ds = fields.Binary(string='3DS')
     product_attachment_fbx = fields.Binary(string='FBX')
     dimension = fields.Text()
+    materials = fields.Text('Materials')
+    dimension_image = fields.Binary(string='Dimension Image')
+    care_instructions = fields.Char(string='Care Instructions')
+    assembly_instructions = fields.Binary()
+    lead_time = fields.Text()
 
 
 class SaleOrderLine(models.Model):
@@ -76,3 +81,8 @@ class WebsiteMenu(models.Model):
     _inherit = "website.menu"
 
     product_public_category_id = fields.Many2one('product.public.category')
+
+class Website(models.Model):
+    _inherit = "website"
+
+    custom_enquiries = fields.Char('Custom Enquiries')

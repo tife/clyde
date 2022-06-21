@@ -20,7 +20,7 @@
                                 <t t-set="product" t-value="td_product['product']"/>
                                 <!-- We use t-attf-class here to allow easier customization -->
                                 <div class="col-md-3 col-sm-6 single-product-view col-6"
-                                     style="padding: 10px;">
+                                     style="padding: 6px;">
                                     <div t-attf-class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
                                         <t t-call="website_sale.products_item">
                                             <t t-set="product_image_big"
