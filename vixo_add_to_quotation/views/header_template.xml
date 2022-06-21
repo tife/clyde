@@ -2,10 +2,22 @@
 <odoo>
     <template id="layout_inherit" inherit_id="website.navbar_nav">
         <xpath expr="//ul[@id='top_menu']" position="before">
-                <a href="/" t-attf-class="header-logo-scroll navbar-brand logo #{_link_class}">
+            <a href="/" t-attf-class="header-logo-scroll navbar-brand logo #{_link_class}">
                 <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
                       t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
             </a>
+        </xpath>
+        <xpath expr="//ul[@id='top_menu']" position="after">
+            <t t-call="website.website_search_box_input">
+                <t t-set="_form_classes" t-valuef="o_wsale_products_searchbar_form ml-auto header-search-scroll order-12"/>
+                <t t-set="search_type" t-valuef="products"/>
+                <t t-set="action" t-valuef="/website/search"/>
+                <t t-set="limit" t-valuef="5"/>
+                <t t-set="display_image" t-valuef="true"/>
+                <t t-set="display_description" t-valuef="true"/>
+                <t t-set="display_extra_link" t-valuef="true"/>
+                <t t-set="display_detail" t-valuef="true"/>
+            </t>
         </xpath>
     </template>
 </odoo>

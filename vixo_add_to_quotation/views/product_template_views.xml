@@ -15,7 +15,6 @@
             </xpath>
             <field name="website_ribbon_id" position="after">
                 <field name="iframe_url"/>
-                <field name="specification"/>
                 <field name="product_attachment"/>
                 <field name="product_attachment_dwg"/>
                 <field name="product_attachment_3ds"/>

@@ -188,7 +188,7 @@ input#customer_ref{
     }
 }
 @media (min-width: 992px){
-    .header-logo-scroll {
+    .header-logo-scroll, .header-search-scroll {
         display:none;
     }
     .o_header_affixed.o_header_is_scrolled .header-logo-scroll {
@@ -197,6 +197,9 @@ input#customer_ref{
         img{
                 height: 2.5rem!important;
         }
+    }
+    .o_header_affixed.o_header_is_scrolled .header-search-scroll {
+        display:block!important;
     }
 }
 .my_cart_quantity{
@@ -263,6 +266,14 @@ header .navbar-brand.logo img {
     content: unset!important;
     border-bottom: 0px !important;
 }
+@media (max-width: 992px){
+    .header-logo-scroll, .header-search-scroll{
+        display:none !important;
+    }
+    header .o_header_centered_logo {
+        width: 100%;
+    }
+}
 @media (min-width: 992px){
     #o-carousel-product .o_carousel_product_indicators .carousel-indicators li {
         width: 150px;
@@ -274,6 +285,25 @@ header .navbar-brand.logo img {
         border: 1px solid #4d4d4d!important;
         box-shadow: 0 0 2px 2px #4d4d4d;
     }
+    .o_header_affixed.o_header_is_scrolled{
+        #top_menu{
+            margin:0!important;
+        }
+        .header-logo-scroll{
+            margin: 0!important;
+        }
+    }
+
+    .variant_attribute {
+        ul.list-inline{
+            width:50%;
+        }
+    }
+    /* .oe_product_image{
+        img{
+            height:400px!important;
+        }
+    } */
 }
 #o-carousel-product{
     .o_image_64_contain {
@@ -288,4 +318,28 @@ header .navbar-brand.logo img {
 }
 .attribute_class{
     display:none;
+}
+.radio_input_value{
+    .modal:not([data-backdrop="false"]) {
+        background-color: #000000eb!important;
+    }
+}
+#top_menu{
+    .o_no_autohide_item{
+        margin-left:0!important;
+        .dropdown-toggle.nav-link{
+            padding:0!important;
+        }
+    }
+}
+.text-15{
+    font-size: 15px;
+}
+.text-12{
+    font-size: 15px;
+}
+.o_product_terms_and_share{
+    p.text-muted.h6.mt-3{
+        font-size:12px;
+    }
 }
