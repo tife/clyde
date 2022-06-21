@@ -296,7 +296,7 @@ header .navbar-brand.logo img {
 
     .variant_attribute {
         ul.list-inline{
-            width:50%;
+            width:55%;
         }
     }
     /* .oe_product_image{
@@ -304,7 +304,16 @@ header .navbar-brand.logo img {
             height:400px!important;
         }
     } */
+
 }
+@media (min-width: 576px){
+.js_attribute_value{
+.modal-dialog {
+    height: unset!important;
+}
+}
+}
+
 #o-carousel-product{
     .o_image_64_contain {
         width: 150px;
