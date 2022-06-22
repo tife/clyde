@@ -72,7 +72,7 @@
         </xpath>
         <xpath expr="//ul//ul/t/li" position="before">
             <t t-if="count in [5,10,15,20,25,30,35,40]">
-                <br/>
+                <br class="br_class"/>
             </t>
         </xpath>
         <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">

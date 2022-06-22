@@ -267,14 +267,23 @@ header .navbar-brand.logo img {
     border-bottom: 0px !important;
 }
 @media (max-width: 992px){
-    .header-logo-scroll, .header-search-scroll{
+    .header-logo-scroll{
         display:none !important;
     }
     header .o_header_centered_logo {
         width: 100%;
     }
+    .br_class{
+        display:none;
+    }
+    #oe_structure_header_vertical_2{
+        .s_searchbar{
+            display:none;
+        }
+    }
 }
 @media (min-width: 992px){
+
     #o-carousel-product .o_carousel_product_indicators .carousel-indicators li {
         width: 150px;
         height: 150px;
