@@ -49,7 +49,7 @@
 			<t t-js="ctx">
 				<script>
 					$("input[name=sec_image_holder").parents(".dynamic_snippet_template:first").addClass('hover-sec-image');
-					$("input[name=sec_image_holder").parents(".carousel-item:first").remove();
+					//$("input[name=sec_image_holder").parents(".carousel-item:first").remove();
 				</script>
 			</t>
 			</t>
