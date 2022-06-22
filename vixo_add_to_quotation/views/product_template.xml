@@ -67,7 +67,16 @@
             </t>
             <br/>
         </xpath>
+        <xpath expr="//ul//ul/t" position="before">
+            <t t-set="count" t-value="0"/>
+        </xpath>
+        <xpath expr="//ul//ul/t/li" position="before">
+            <t t-if="count in [5,10,15,20,25,30,35,40]">
+                <br/>
+            </t>
+        </xpath>
         <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">
+            <t t-set="count" t-value="count + 1"/>
             <div class="radio_input_value custom-control-label">
                 <t t-if="ptav.product_attribute_value_id.attr_image">
                     <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
@@ -79,7 +88,8 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content" style="background: transparent;border: 0;">
                                 <div class="modal-header" style="border-bottom: 0px;">
-                                    <button style="color: gray;font-size: 26px;right: 0;position: absolute;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button style="color: gray;font-size: 26px;right: 0;position: absolute;"
+                                            type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </div>
