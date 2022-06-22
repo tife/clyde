@@ -4,56 +4,69 @@
 	<!--
 		-->
         <!--<xpath expr="//div[@class='o_carousel_product_card w-100 card border-0 p-3']" position="after">-->
-		<xpath expr="." position="inside">
+		<xpath expr="." position="replace">
 			<!-- Write here your custom code -->
-			
+			<t>
+            <t t-foreach="records" t-as="data">
+                <t t-set="record" t-value="data['_record']"/>
+				<t t-set="product_images" t-value="data['_record']['product_template_image_ids']"/>
+				<t t-set="sec_image" t-value=""/>
+				<t t-foreach="product_images" t-as="product_image">
+					<t t-set="sec_image" t-value="image_data_uri(product_image.image_512)"/>
+				</t>
+                <div class="o_carousel_product_card w-100 card border-0 p-3 square">
+                    <div class="content">
+                      <div t-if="is_sample" class="h5 o_ribbon_right bg-primary text-uppercase">Sample</div>
+                      <input type="hidden" name="product-id" t-att-data-product-id="record.id"/>
+                      <a class="o_carousel_product_img_link o_dynamic_product_hovered" t-att-href="record.website_url">
+					  	  <t t-if="sec_image">
+							<img class="o_carousel_product_card_img_top card-img-top" loading="lazy" t-att-src="data['image_512']" t-att-alt="record.display_name"
+								t-att-data-ori-image="data['image_512']" t-att-data-sec-image="sec_image" 
+								onMouseOver="if($(this).data('sec-image') != ''){this.src=$(this).data('sec-image')}"
+								onMouseOut="this.src=$(this).data('ori-image')"
+								/>
+						  </t>
+                      </a>
+                      <div class="o_carousel_product_card_body d-flex flex-wrap flex-column justify-content-between h-100">
+                          <a t-att-href="record.website_url" class="o_carousel_product_img_link text-decoration-none">
+                              <div class="h6 card-title mt-4" t-field="record.display_name"/>
+                          </a>
+                          <div>
+                              <t t-if="is_view_active('website_sale.product_comment')" t-call="portal_rating.rating_widget_stars_static">
+                                  <t t-set="rating_avg" t-value="record.rating_avg"/>
+                                  <t t-set="rating_count" t-value="record.rating_count"/>
+                              </t>
+                              <div class="mt-2">
+                                  <t t-call="website_sale.price_dynamic_filter_template_product_product" t-if="not user_id._is_public()"/>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </t>
+
+			<input type="hidden" name="sec_image_holder" />
 			<t t-js="ctx">
 				<script>
-					var sec_images = [];
-					<t t-foreach="records" t-as="data">
-						<t t-set="product_images" t-value="data['_record']['product_template_image_ids']"/>
-						<t t-foreach="product_images" t-as="product_image">
-							//sec_images.push('<t t-esc="image_data_uri(product_image.image_512)" />');
-							sec_images['product_<t t-esc="data['_record']['id']" />'] = '<t t-esc="image_data_uri(product_image.image_512)" />';
-						</t>
-					</t>
-					
-					
-					$(document).ajaxComplete(function(){
-						/*
-						$("#s_dynamic_snippet_3 ").click(function(){
-							alert('hhi clicked');
-						})
-						*/
-
-						//$("#s_dynamic_snippet_3 .o_carousel_product_card_img_top").hover(
-						$(".hover-sec-image .o_carousel_product_card_img_top").hover(
-							function(){
-								
-								var product_id = $(this).parents('.o_carousel_product_card:first').find('input[name=product-id]').data('product-id');
-
-								if(!$(this).data('org-img')){
-									$(this).data('org-img', $(this).attr('src'));
-								}
-								
-								if(sec_images['product_' + product_id]) {
-									if(sec_images['product_' + product_id] != null)
-										$(this).attr('src', sec_images['product_' + product_id]);
-								}
-								
-							},
-							function() {
-								$(this).attr('src', $(this).data('org-img'));            
-							}
-						);
-					});
+					$("input[name=sec_image_holder").parents(".dynamic_snippet_template:first").addClass('hover-sec-image');
+					$("input[name=sec_image_holder").parents(".carousel-item").remove();
 				</script>
-								
+			</t>
 			</t>
         </xpath>
 
+
+		<!--
         <xpath expr="//t[@t-call='website_sale.price_dynamic_filter_template_product_product']" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+		-->
+		
+	</template>
+
+	<template id="replace_s_dynamic_snippet_template" inherit_id="website.s_dynamic_snippet_template">
+        <xpath expr="//div[hasclass('dynamic_snippet_template')]" position="attributes">
+            <attribute name="class">dynamic_snippet_template hover-sec-image</attribute>
         </xpath>
 	</template>
 </odoo>
