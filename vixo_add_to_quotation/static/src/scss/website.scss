@@ -182,6 +182,10 @@ input#customer_ref{
         border-bottom:1px solid #CED4DA;
     }
 }
+#top_menu .nav-item:last-child {
+    min-width: 100px;
+    text-align: right;
+}
 .o_header_affixed{
     .justify-content-between.flex-wrap{
         display:none!important;
