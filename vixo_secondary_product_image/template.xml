@@ -55,6 +55,8 @@
 						//$parent.find("input[name=sec_image_holder]").parents(".carousel-item:first").remove();
 						//if($parent.find("input[name=sec_image_script_holder]").length)
 						//	$parent.find("input[name=sec_image_script_holder]").parents(".carousel-item:first").remove();
+						$parent.find("input[name=sec_image_holder]").parents(".d-flex:first").remove();
+						$parent.find("input[name=sec_image_script_holder]").parents(".d-flex:first").remove();
 					</script>
 				</div>
 			</t>
