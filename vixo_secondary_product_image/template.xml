@@ -52,9 +52,9 @@
 					<script>
 						$parent = $("input[name=sec_image_holder]").parents(".dynamic_snippet_template:first");
 						$parent.addClass('hover-sec-image');
-						$parent.find("input[name=sec_image_holder]").parents(".carousel-item:first").remove();
-						if($parent.find("input[name=sec_image_script_holder]").length)
-							$parent.find("input[name=sec_image_script_holder]").parents(".carousel-item:first").remove();
+						//$parent.find("input[name=sec_image_holder]").parents(".carousel-item:first").remove();
+						//if($parent.find("input[name=sec_image_script_holder]").length)
+						//	$parent.find("input[name=sec_image_script_holder]").parents(".carousel-item:first").remove();
 					</script>
 				</div>
 			</t>
