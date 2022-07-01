@@ -48,29 +48,31 @@
     </template>
     <template id="products_item_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('oe_product_image')]" position="replace">
-            <div class="card-body p-1 oe_product_image">
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                <a t-att-href="product_href" class="d-block h-100" itemprop="url">
-                    <t t-set="image_holder" t-value="product._get_image_holder()"/>
-                    <!--
-                                        <span t-field="image_holder.image_1920"
-                                              t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_256', 'itemprop': 'image'}"
-                                              class="d-flex h-100 justify-content-center align-items-center"/>
-                    -->
-                    <!--
-                                        <img t-if="product.image_1024"
-                                             t-att-src="'data:image/png;base64,%s' % to_text(product.image_1024)"
-                                             class="img img-fluid"/>
-                    -->
-                    <img t-att-class="'img img-responsive img-fluid pic-1' if product.product_template_image_ids else 'img img-responsive img-fluid'"
-                         t-att-src="website.image_url(product,'image_1024')"/>
-                    <t t-if="product.product_template_image_ids">
-                        <t t-set="extra_image_id" t-value="product.product_template_image_ids[0]"/>
+            <div class="card-body p-1 oe_product_image square">
+                <div class="content">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <a t-att-href="product_href" class="d-block h-100" itemprop="url">
+                        <t t-set="image_holder" t-value="product._get_image_holder()"/>
+                        <!--
+                                            <span t-field="image_holder.image_1920"
+                                                t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_256', 'itemprop': 'image'}"
+                                                class="d-flex h-100 justify-content-center align-items-center"/>
+                        -->
+                        <!--
+                                            <img t-if="product.image_1024"
+                                                t-att-src="'data:image/png;base64,%s' % to_text(product.image_1024)"
+                                                class="img img-fluid"/>
+                        -->
+                        <img t-att-class="'img img-responsive img-fluid pic-1' if product.product_template_image_ids else 'img img-responsive img-fluid'"
+                            t-att-src="website.image_url(product,'image_1024')"/>
+                        <t t-if="product.product_template_image_ids">
+                            <t t-set="extra_image_id" t-value="product.product_template_image_ids[0]"/>
 
-                        <img t-if="product.product_template_image_ids" class="img img-responsive img-fluid pic-2"
-                             t-att-src="website.image_url(extra_image_id,'image_1024')"/>
-                    </t>
-                </a>
+                            <img t-if="product.product_template_image_ids" class="img img-responsive img-fluid pic-2"
+                                t-att-src="website.image_url(extra_image_id,'image_1024')"/>
+                        </t>
+                    </a>
+                </div>
             </div>
 
         </xpath>
