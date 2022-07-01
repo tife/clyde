@@ -196,7 +196,7 @@
                                         <a href="/teams/condition" class="text-black px-3 text-decoration-none">Teams and Conditions</a>
                                     </li>
                                     <li class="list-unstyled">
-                                        <a href="" class="text-black px-3 text-decoration-none">Copyright klyde International</a>
+                                        <span class="text-black px-3 text-decoration-none">Copyright klyde International</span>
                                     </li>
                                 </ul>
                             </div>
