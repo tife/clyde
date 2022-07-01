@@ -293,10 +293,13 @@ header .navbar-brand.logo img {
         height: 150px;
         border: 0px solid #ADB5BD;
         opacity: 1 !important;
+        margin-top: 0.5rem !important;
+        margin-left: 0.25rem !important;
+        margin-right: 0.25rem !important;
     }
     #o-carousel-product .o_carousel_product_indicators .carousel-indicators li.active {
-        border: 1px solid #4d4d4d!important;
-        box-shadow: 0 0 2px 2px #4d4d4d;
+        border: 1px solid black !important;
+        box-shadow: 0 0 1px 1px #4d4d4d;
     }
     .o_header_affixed.o_header_is_scrolled{
         #top_menu{
