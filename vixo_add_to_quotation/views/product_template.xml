@@ -182,7 +182,7 @@
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
-                                   data-target="#dimension_image">Dimension
+                                   data-target="#dimension_image">Dimensions
                                 </a>
                                 <div class="collapse" role="tabpanel" id="dimension_image">
                                     <div class="card-body pt-0" id="dimension_image">
