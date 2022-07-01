@@ -1,16 +1,16 @@
 .home_section_title {
     font-family: 'Lato';
     font-weight: 900;
-    font-size: 135px;
+    font-size: 17vh;
 }
 
 .home_section:first-child {
     padding-top: 20vh !important;
-    height: 65vh;
+    height: calc(100vh - 160px - 10vh);
 }
 .home_section {
     padding-top: 25vh !important;
-    height: 80vh;
+    height: calc(100vh - 65px - 10vh);
 }
 .breadcrumb {
     display: none !important;
