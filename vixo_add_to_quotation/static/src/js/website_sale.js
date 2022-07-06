@@ -30,10 +30,12 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
                         items:1
                     },
                     600:{
-                        items:2
+                        items:2,
+                        slideBy: 2
                     },
                     1000:{
-                        items:4
+                        items:4,
+                        slideBy: 4
                     }
                 }
             })
