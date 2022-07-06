@@ -29,6 +29,8 @@
             'vixo_add_to_quotation/static/src/scss/vixo_override.scss',
             'vixo_add_to_quotation/static/src/js/payment_status.js',
             'vixo_add_to_quotation/static/src/js/website_sale.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js',
         ],
     },
     'demo': [
