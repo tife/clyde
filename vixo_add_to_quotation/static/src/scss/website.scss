@@ -186,6 +186,10 @@ input#customer_ref{
     min-width: 100px;
     text-align: right;
 }
+#top_menu .nav-item:last-child .nav-link {
+    padding-top: 4px !important;
+    font-size: 14px;
+}
 .o_header_affixed{
     .justify-content-between.flex-wrap{
         display:none!important;
