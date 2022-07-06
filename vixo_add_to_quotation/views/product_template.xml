@@ -314,18 +314,40 @@
             </div>
         </xpath>
     </template>
-    <!--
-        <template id="sale_order_portal_template_inherit" inherit_id="sale.sale_order_portal_template">
-            <xpath expr="//a[hasclass('o_download_btn')]" position="replace">
-                <t t-esc="sale_order.get_portal_url(report_type='pdf', download=True)"/>
-                <a class="btn btn-secondary btn-block o_download_btn"
-                   t-att-href="sale_order.get_portal_url(report_type='pdf', download=True)" title="Download">
-                    <i class="fa fa-download"/>
-                    Download
-                </a>
-            </xpath>
-        </template>
-    -->
+    <template id="recommended_products_inherit" inherit_id="website_sale.recommended_products">
+        <xpath expr="//div[hasclass('container')]" position="replace">
+            <div class="container-fluid mt32" t-if="alternative_products">
+                <h3>Recommended Products:</h3>
+                <div class="owl-carousel owl-theme recommended-product">
+                    <t t-foreach="alternative_products" t-as="alt_product">
+                        <div class="item" t-att-data-publish="alt_product.website_published and 'on' or 'off'">
+                            <div class="mt16 text-center" style="height: 100%;">
+                                <t t-set="combination_info" t-value="alt_product._get_combination_info()"/>
+                                <t t-set="product_variant"
+                                   t-value="alt_product.env['product.product'].browse(combination_info['product_id'])"/>
+                                <a t-att-href="alt_product.website_url" style="display: block">
+                                    <div t-if="product_variant" t-field="product_variant.image_1024"
+                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                    <div t-else="" t-field="alt_product.image_1024"
+                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                </a>
+                                <h6 class="mt-2 text-left">
+                                    <a t-att-href="alt_product.website_url" style="display: block">
+                                        <span t-att-title="alt_product.name" t-field="alt_product.name"
+                                              class="o_text_overflow" style="display: block;"/>
+                                    </a>
+                                </h6>
+                                <p class="ml-1 h6 text-left"
+                                   style="white-space: nowrap;"
+                                   t-esc="alt_product.list_price"
+                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
         <field name="customize_show" eval="False"/>

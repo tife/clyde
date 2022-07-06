@@ -20,6 +20,22 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
                         $("span.attribute_class[data-value_id='" + $(this).val() + "']").show();
                     });
                 }}, 1000);
+             $('.recommended-product').owlCarousel({
+                loop:false,
+                margin:10,
+                nav:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
 
         },
 
