@@ -374,24 +374,54 @@ header .navbar-brand.logo img {
             position: absolute;
             right: 0;
             top: 50%;
-            font-size: 36px!important;
-            background: gray!important;
-            color: white!important;
-            font-weight: bold!important;
-            width: 50px;
-            border-radius: 50%;
+//             font-size: 36px!important;
+//             background: gray!important;
+//             color: white!important;
+//             font-weight: bold!important;
+//             width: 50px;
+//             border-radius: 50%;
         }
         .owl-prev{
             position: absolute;
             left: 0;
             top: 50%;
-            font-size: 36px!important;
-            background: gray!important;
-            color: white!important;
-            font-weight: bold!important;
-            width: 50px;
-            border-radius: 50%;
+//             font-size: 36px!important;
+//             background: gray!important;
+//             color: white!important;
+//             font-weight: bold!important;
+//             width: 50px;
+//             border-radius: 50%;
 
         }
     }
+}
+.recommended-product{
+.item {
+	.hover-class-div {
+		.pic-1 {
+			backface-visibility: hidden;
+			transition: all 0.5s ease 0s;
+		}
+		.pic-2 {
+// 			width: 100%;
+// 			height: 100%;
+			opacity: 0;
+			backface-visibility: hidden;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all 0.5s ease 0s;
+		}
+	}
+	&:hover {
+		.hover-class-div {
+			.pic-1 {
+				opacity: 0;
+			}
+			.pic-2 {
+				opacity: 1;
+			}
+		}
+	}
+}
 }

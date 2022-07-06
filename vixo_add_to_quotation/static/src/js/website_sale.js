@@ -24,6 +24,7 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
                 loop:false,
                 margin:10,
                 nav:true,
+                navText : ["<i class='fa fa-2x fa-chevron-circle-left'></i>","<i class='fa fa-2x fa-chevron-circle-right'></i>"],
                 responsive:{
                     0:{
                         items:1
