@@ -327,9 +327,19 @@
                                    t-value="alt_product.env['product.product'].browse(combination_info['product_id'])"/>
                                 <a t-att-href="alt_product.website_url" style="display: block">
                                     <div t-if="product_variant" t-field="product_variant.image_1024"
-                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
                                     <div t-else="" t-field="alt_product.image_1024"
-                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                         t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
+                                    <t t-if="product_variant.product_template_image_ids and product_variant">
+                                        <t t-set="extra_image_id" t-value="product_variant.product_template_image_ids[0]"/>
+                                        <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                    </t>
+                                    <t t-if="alt_product.product_template_image_ids and not product_variant">
+                                        <t t-set="extra_image_id" t-value="alt_product.product_template_image_ids[0]"/>
+                                        <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                    </t>
                                 </a>
                                 <h6 class="mt-2 text-left">
                                     <a t-att-href="alt_product.website_url" style="display: block">
