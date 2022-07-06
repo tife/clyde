@@ -374,6 +374,7 @@ header .navbar-brand.logo img {
             position: absolute;
             right: 0;
             top: 50%;
+            margin-right: 0.5vw;
 //             font-size: 36px!important;
 //             background: gray!important;
 //             color: white!important;
@@ -385,6 +386,7 @@ header .navbar-brand.logo img {
             position: absolute;
             left: 0;
             top: 50%;
+            margin-left: 0.5vw;
 //             font-size: 36px!important;
 //             background: gray!important;
 //             color: white!important;
@@ -392,6 +394,10 @@ header .navbar-brand.logo img {
 //             width: 50px;
 //             border-radius: 50%;
 
+        }
+        i {
+            color: #9a92a1;
+            background: radial-gradient(rgb(255, 255, 255) 50%, transparent 50%);
         }
     }
 }
@@ -424,4 +430,14 @@ header .navbar-brand.logo img {
 		}
 	}
 }
+}
+
+.recommended-product .owl-item {
+    padding-left: 0.55vw;
+    padding-right: 0.55vw;
+}
+
+.recommended-product .price {
+    color: rgb(117, 117, 117);
+    font-weight: 100 !important;
 }

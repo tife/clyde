@@ -325,7 +325,8 @@
                                 <t t-set="combination_info" t-value="alt_product._get_combination_info()"/>
                                 <t t-set="product_variant"
                                    t-value="alt_product.env['product.product'].browse(combination_info['product_id'])"/>
-                                <a t-att-href="alt_product.website_url" style="display: block">
+                                <a t-att-href="alt_product.website_url" class="square" style="display: block">
+                                    <div class="content" style="overflow: hidden">
                                     <t t-if="product_variant.product_template_image_ids">
                                         <div t-if="product_variant" t-field="product_variant.image_1024" class="hover-class-div"
                                              t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
@@ -348,6 +349,7 @@
                                         <div t-if="extra_image_id" t-field="extra_image_id.image_1024" class="hover-class-div"
                                              t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
                                     </t>
+                                    </div>
                                 </a>
                                 <h6 class="mt-2 text-left">
                                     <a t-att-href="alt_product.website_url" style="display: block">
@@ -355,10 +357,11 @@
                                               class="o_text_overflow" style="display: block;"/>
                                     </a>
                                 </h6>
-                                <p class="ml-1 h6 text-left"
+                                <p class="ml-1 h6 text-left price"
                                    style="white-space: nowrap;"
                                    t-esc="alt_product.list_price"
-                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                    t-if="not user_id._is_public()"/>
                             </div>
                         </div>
                     </t>
