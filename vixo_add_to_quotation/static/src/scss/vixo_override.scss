@@ -32,3 +32,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-brand, .navbar-text, .navbar .nav-link, .navbar a.js_change_lang span, .navbar a.o_add_language {
     font-family: Lato, "Source Sans Pro", "Odoo Unicode Support Noto", sans-serif !important;
 }
+
+ol.carousel-indicators li {
+    width: 25% !important;
+    position: relative !important;
+    height: 0 !important;
+    padding-bottom: 25%;
+    overflow: hidden;
+}
+
+ol.carousel-indicators li img {
+    width: 100% !important;
+    height: 100% !important;
+}

@@ -369,6 +369,13 @@
             </div>
         </xpath>
     </template>
+
+    <template id="carousel_product_indicators_inherit" inherit_id="website_sale.carousel_product_indicators">
+        <xpath expr="//div[@t-field='product_image.image_128']" position="attributes">
+            <attribute name="t-field">product_image.image_512</attribute>
+        </xpath>
+    </template>
+
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
         <field name="customize_show" eval="False"/>
