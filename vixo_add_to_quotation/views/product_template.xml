@@ -88,7 +88,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content" style="background: transparent;border: 0;">
                                 <div class="modal-header" style="border-bottom: 0px;">
-                                    <button style="color: gray;font-size: 26px;right: 0;position: absolute;"
+                                    <button style="color: white;font-size: 26px;right: 0;position: absolute;"
                                             type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-times"></i>
                                     </button>
@@ -100,7 +100,7 @@
                                          t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid w-100", "alt-field": "name"}'/>
                                 </div>
                                 <div class="modal-footer p-0" style="border-top: 0px;justify-content: center;">
-                                    <div style="color: gray;font-size: 16px;">
+                                    <div style="color: white;font-size: 16px;">
                                         <t t-esc="ptav.name"/>
                                     </div>
                                 </div>
