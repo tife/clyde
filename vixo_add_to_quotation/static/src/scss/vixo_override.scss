@@ -49,3 +49,10 @@ ol.carousel-indicators li img {
 .product-list.grid-view-items div.o_wsale_product_information {
     background-color: white !important;
 }
+
+.o_header_is_scrolled .oe_search_box {
+    width: 120px;
+}
+.o_header_is_scrolled #top_menu_container {
+    max-width: 1230px;
+}
