@@ -113,9 +113,10 @@
     color:#8b8b8b;
 }
 .oe_product_cart .oe_product_image img {
-    height: unset!important;
+    /*height: unset!important;
     width: unset!important;
-    object-fit: unset!important;
+    object-fit: unset!important;*/
+    object-fit: none;
 }
 .single-product-view {
 	.oe_product_image {
