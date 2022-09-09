@@ -88,9 +88,9 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content" style="background: transparent;border: 0;">
                                 <div class="modal-header" style="border-bottom: 0px;">
-                                    <button style="color: #ffffff;font-size: 26px;right: 0;position: absolute;opacity:1"
+                                    <button style="color: #ffffff;font-size: 26px;right: 0;position: absolute;opacity:1; text-shadow:none"
                                             type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="fa fa-times"></i>
+                                        x
                                     </button>
                                 </div>
                                 <div class="modal-body">
