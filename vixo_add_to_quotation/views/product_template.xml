@@ -213,7 +213,7 @@
                         <t t-if="product.care_instructions">
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                                   style="color: black;font-size: 22px;"
+                                   style="color: black;"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                    data-target="#care_instructions">Care Instructions
                                 </a>
@@ -230,7 +230,7 @@
                         <t t-if="product.assembly_instructions">
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                                   style="color: black;font-size: 22px;"
+                                   style="color: black;"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                    data-target="#assembly_instructions">Assembly Instructions
                                 </a>
@@ -251,7 +251,7 @@
                         </t>
                         <div class="bg-white tab_div">
                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                               style="color: black;font-size: 22px;"
+                               style="color: black;"
                                class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                data-target="#download">Download
                             </a>
