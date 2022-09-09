@@ -21,7 +21,7 @@
         </xpath>
         <xpath expr="//li[hasclass('breadcrumb-item', 'o_not_editable')]" position="replace">
             <li class="breadcrumb-item o_not_editable">
-                <a t-att-href="/">Home</a>
+                <a href="/">Home</a>
             </li>
         </xpath>
     </template>
