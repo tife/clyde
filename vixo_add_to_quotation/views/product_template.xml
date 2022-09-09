@@ -19,6 +19,11 @@
                style="text-decoration: underline;color: black;font-size: 22px;">Custom Enquiries
             </a>
         </xpath>
+        <xpath expr="//li[hasclass('breadcrumb-item', 'o_not_editable')]" position="replace">
+            <li class="breadcrumb-item o_not_editable">
+                <a t-att-href="/">Home</a>
+            </li>
+        </xpath>
     </template>
     <!--
         <template id="product_banner_image_inherit" inherit_id="website_sale.product">
