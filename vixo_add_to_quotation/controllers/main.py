@@ -128,3 +128,7 @@ class WebsiteSale(http.Controller):
         order_id = request.env['sale.order'].sudo().browse(int(post.get('sale_order_id')))
         if order_id:
             order_id.project_name = post.get('value')
+
+    @http.route(['/aboutus'], type='http', website=True, auth='public', csrf=False)
+    def aboutus(self, **post):
+        return request.render('vixo_add_to_quotation.aboutus', {})

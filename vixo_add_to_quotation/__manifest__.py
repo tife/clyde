@@ -15,6 +15,7 @@
         'report/sale_report_template.xml',
         'views/header_template.xml',
         'views/footer_template.xml',
+        'views/about_us_template.xml',
     ],
     'depends': [
         'website_sale',
