@@ -374,6 +374,154 @@ header .navbar-brand.logo img {
         font-size:12px;
     }
 }
+#o-carousel-product{
+    overflow: unset !important;
+}
+.page-item.active .page-link {
+  background-color: rgb(77, 77, 77);
+  border-color: rgb(77, 77, 77);
+}
+.oe_cart , .js_cart_summary{
+    .btn.btn-secondary{
+        color: white!important;
+        background-color: black!important;
+        border-width: 0px;
+        border-color: black!important;
+        border-radius: 20px;
+    }
+    .btn.btn-primary{
+        color: white!important;
+        background-color: black!important;
+        border-width: 0px;
+        border-color: black!important;
+        border-radius: 20px;
+    }
+}
+.progress-wizard .progress-wizard-step.active .progress-wizard-dot {
+    background: #4d4d4d!important;
+    box-shadow: 0 0 0 0.1875rem white, 0 0 0 0.25rem #4d4d4d!important;
+}
+.td-product_name{
+    a{
+        color:black;
+        font-weight:bold;
+    }
+}
+.css_quantity{
+
+    .js_add_cart_json{
+        color: white !important;
+        background-color: black !important;
+        border-width: 0px;
+        border-color: black !important;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    .float_left.js_add_cart_json{
+        color: white !important;
+        background-color: black !important;
+        border-width: 0px;
+        border-color: black !important;
+        border-top-right-radius: 20px!important;
+        border-bottom-right-radius: 20px!important;
+    }
+}
+.oe_website_sale_tx_status{
+    .card-header{
+        background: #4d4d4d!important;
+    }
+    .card-body{
+        background: rgb(127, 127, 127)!important;
+        color:white!important;
+    }
+}
+#sidebar_content{
+    .btn-primary{
+        color: white!important;
+        background-color: black!important;
+        border-width: 0px;
+        border-color: black!important;
+        border-radius: 20px;
+    }
+    .o_download_btn, .o_portal_invoice_print{
+        background: #4d4d4d!important;
+    }
+}
+#quote_content{
+    .btn-secondary{
+        background: #4d4d4d!important;
+    }
+    .btn-primary{
+        color: white!important;
+        background-color: black!important;
+        border-width: 0px;
+        border-color: black!important;
+        border-radius: 20px;
+    }
+}
+.bs-sidenav{
+    a{
+        color:black;
+        font-weight:bold;
+    }
+}
+.popover-body{
+    .alert-info{
+        background: rgb(127, 127, 127)!important;
+        color:white!important;
+    }
+}
+.badge-secondary {
+    border-color: black!important;
+    background-color: black!important;
+}
+.o_portal_my_security, .o_portal_my_details, .o_portal_submenu, .o_portal_my_doc_table{
+        a{
+            color: black !important;
+            font-weight:bold;
+        }
+}
+#o_portal_navbar_content{
+    .btn-secondary{
+        background-color: black!important;
+        border-width: 0px;
+        border-color: black!important;
+        border-radius: 20px;
+    }
+}
+.o_portal_search_panel{
+    .dropdown-toggle{
+        border-top-right-radius: 0!important;
+        border-bottom-right-radius: 0!important;
+
+    }
+    .input-group-append{
+        .btn-secondary{
+            border-top-left-radius: 0!important;
+            border-bottom-left-radius: 0!important;
+        }
+    }
+}
+.about_p{
+    font-size: 14px;
+    font-weight: 100;
+}
+.about-us{
+    h4{
+        font-weight: 700;
+        font-size: 16px;
+    }
+}
+@media (min-width: 992px){
+    #o-carousel-product .o_carousel_product_indicators .carousel-indicators li {
+        width: 100%!important;
+        height: 100%!important;
+    }
+}
+.image-product-carousel{
+    height: 198px;
+    object-fit: fill;
+}
 .recommended-product{
     .owl-nav{
         .owl-next{
