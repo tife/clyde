@@ -13,6 +13,9 @@
                     <field name="product_details_image" widget="image" class="oe_avatar"/>
                 </group>
             </xpath>
+            <field name="company_id" position="after">
+                <field name="without_login_price"/>
+            </field>
             <field name="website_ribbon_id" position="after">
                 <field name="iframe_url"/>
                 <field name="product_attachment"/>

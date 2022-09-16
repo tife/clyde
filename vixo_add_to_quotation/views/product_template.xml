@@ -19,6 +19,11 @@
                style="text-decoration: underline;color: black;font-size: 22px;">Custom Enquiries
             </a>
         </xpath>
+        <xpath expr="//li[hasclass('breadcrumb-item', 'o_not_editable')]" position="replace">
+            <li class="breadcrumb-item o_not_editable">
+                <a href="/">Home</a>
+            </li>
+        </xpath>
     </template>
     <!--
         <template id="product_banner_image_inherit" inherit_id="website_sale.product">
@@ -81,16 +86,16 @@
                 <t t-if="ptav.product_attribute_value_id.attr_image">
                     <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
                          data-toggle="modal" t-attf-data-target="#attribute_#{ptav.product_attribute_value_id.id}"
-                         t-options='{"style":"max-width: 70px;background-color: #fff;border-radius: 64px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                         t-options='{"style":"max-width: 92px;background-color: #fff;border-radius: 64px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
                     <div class="modal fade" t-attf-id="attribute_#{ptav.product_attribute_value_id.id}" tabindex="-1"
                          role="dialog"
                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content" style="background: transparent;border: 0;">
                                 <div class="modal-header" style="border-bottom: 0px;">
-                                    <button style="color: white;font-size: 26px;right: 0;position: absolute;"
+                                    <button style="color: #ffffff;font-size: 26px;right: 0;position: absolute;opacity:1; text-shadow:none"
                                             type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="fa fa-times"></i>
+                                        x
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -100,7 +105,7 @@
                                          t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid w-100", "alt-field": "name"}'/>
                                 </div>
                                 <div class="modal-footer p-0" style="border-top: 0px;justify-content: center;">
-                                    <div style="color: white;font-size: 16px;">
+									<div style="color: #ffffff;font-size: 26px;">
                                         <t t-esc="ptav.name"/>
                                     </div>
                                 </div>
@@ -208,7 +213,7 @@
                         <t t-if="product.care_instructions">
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                                   style="color: black;font-size: 22px;"
+                                   style="color: black;"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                    data-target="#care_instructions">Care Instructions
                                 </a>
@@ -225,7 +230,7 @@
                         <t t-if="product.assembly_instructions">
                             <div class="bg-white tab_div">
                                 <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                                   style="color: black;font-size: 22px;"
+                                   style="color: black;"
                                    class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                    data-target="#assembly_instructions">Assembly Instructions
                                 </a>
@@ -246,7 +251,7 @@
                         </t>
                         <div class="bg-white tab_div">
                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
-                               style="color: black;font-size: 22px;"
+                               style="color: black;"
                                class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
                                data-target="#download">Download
                             </a>
@@ -376,9 +381,26 @@
         </xpath>
     </template>
 
+    <template id="carousel_product_indicators_inherit" inherit_id="website_sale.carousel_product_indicators">
+        <xpath expr="//div" position="replace">
+            <div t-ignore="True" t-attf-class="o_carousel_product_indicators {{indicators_div_class}}">
+                <ol t-if="len(product_images) > 1"
+                    t-attf-class="carousel-indicators {{indicators_list_class}} position-static mx-auto my-0 text-left">
+                    <t t-foreach="product_images" t-as="product_image">
+                        <li t-attf-class="m-1 mb-2 align-top {{'active' if product_image_first else ''}}"
+                            data-target="#o-carousel-product" t-att-data-slide-to="str(product_image_index)">
+                            <div t-field="product_image.image_1024"
+                                 t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid image-product-carousel", "alt-field": "name"}'/>
+                            <i t-if="product_image._name == 'product.image' and product_image.embed_code"
+                               class="fa fa-2x fa-play-circle o_product_video_thumb"/>
+                        </li>
+                    </t>
+                </ol>
+            </div>
+        </xpath>
+    </template>
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
         <field name="customize_show" eval="False"/>
     </record>
-
 </odoo>
