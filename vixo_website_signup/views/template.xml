@@ -70,7 +70,7 @@
         </div>
 		<div class="col-md-4" t-if="not only_passwords == 1">
 			<h5>
-				<label>Business Details</label>
+				<label>Business Details =<t t-esc="only_passwords"/></label>
 			</h5>
 
 			<div class="form-group field-companyname">
