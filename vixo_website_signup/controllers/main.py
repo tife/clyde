@@ -115,7 +115,8 @@ class AuthSignupHome(AuthSignupHome):
 
     @http.route('/web/reset_password', type='http', auth='public', website=True, sitemap=False)
     def web_auth_reset_password(self, *args, **kw):
-        qcontext = self.get_auth_signup_qcontext()
+        #qcontext = self.get_auth_signup_qcontext()
+        response = super(AuthSignupHome, self).web_auth_reset_password(*args, **kw)
         response.qcontext['states'] = request.env['res.country.state'].sudo().search([])
         response.qcontext['countries'] = request.env['res.country'].sudo().search([])
 
