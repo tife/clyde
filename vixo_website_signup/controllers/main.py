@@ -113,7 +113,14 @@ class AuthSignupHome(AuthSignupHome):
                 request.session.logout(keep_db=True)
         return response
 
+    @http.route('/web/reset_password', type='http', auth='public', website=True, sitemap=False)
+    def web_auth_reset_password(self, *args, **kw):
+        #qcontext = self.get_auth_signup_qcontext()
+        response = super(AuthSignupHome, self).web_auth_reset_password(*args, **kw)
+        response.qcontext['states'] = request.env['res.country.state'].sudo().search([])
+        response.qcontext['countries'] = request.env['res.country'].sudo().search([])
 
+        return response
 
 class ResCountryChange(http.Controller):
 
