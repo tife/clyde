@@ -113,40 +113,7 @@ class AuthSignupHome(AuthSignupHome):
                 request.session.logout(keep_db=True)
         return response
 
-    @http.route('/web/reset_password', type='http', auth='public', website=True, sitemap=False)
-    def web_auth_reset_password(self, *args, **kw):
-        #qcontext = self.get_auth_signup_qcontext()
-        response = super(AuthSignupHome, self).web_auth_reset_password(*args, **kw)
-        response.qcontext['states'] = request.env['res.country.state'].sudo().search([])
-        response.qcontext['countries'] = request.env['res.country'].sudo().search([])
 
-        if not qcontext.get('token') and not qcontext.get('reset_password_enabled'):
-            raise werkzeug.exceptions.NotFound()
-
-        if 'error' not in qcontext and request.httprequest.method == 'POST':
-            try:
-                if qcontext.get('token'):
-                    self.do_signup(qcontext)
-                    return self.web_login(*args, **kw)
-                else:
-                    login = qcontext.get('login')
-                    assert login, _("No login provided.")
-                    _logger.info(
-                        "Password reset attempt for <%s> by user <%s> from %s",
-                        login, request.env.user.login, request.httprequest.remote_addr)
-                    request.env['res.users'].sudo().reset_password(login)
-                    qcontext['message'] = _("An email has been sent with credentials to reset your password")
-            except UserError as e:
-                qcontext['error'] = e.args[0]
-            except SignupError:
-                qcontext['error'] = _("Could not reset your password")
-                _logger.exception('error when resetting password')
-            except Exception as e:
-                qcontext['error'] = str(e)
-
-        response = request.render('auth_signup.reset_password', qcontext)
-        response.headers['X-Frame-Options'] = 'DENY'
-        return response
 
 class ResCountryChange(http.Controller):
 
