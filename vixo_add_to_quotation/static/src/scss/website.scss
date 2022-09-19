@@ -595,3 +595,23 @@ header .navbar-brand.logo img {
     color: rgb(117, 117, 117);
     font-weight: 100 !important;
 }
+#o-carousel-product{
+    position:unset!important;
+    top:unset!important;
+    .carousel-inner{
+        .carousel-item{
+            min-height: unset!important;
+        }
+    }
+}
+.single-page-multi-image{
+    .owl-prev{
+        top: 50%;
+        position: absolute;
+    }
+    .owl-next{
+        position: absolute;
+        top: 50%;
+        right: 0;
+    }
+}

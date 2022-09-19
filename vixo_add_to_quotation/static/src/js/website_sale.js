@@ -14,6 +14,23 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
 
         init: function () {
             this._super.apply(this, arguments);
+            $('.single-page-multi-image').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                navText: ['<span class="fa fa-chevron-left fa-2x"></span>','<span class="fa fa-chevron-right fa-2x"></span>'],
+                responsive:{
+                    0:{
+                        items:3
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
              setTimeout(function () {
                 if($('input:checked', '.custom-control.custom-radio')){
                     $('input:checked', '.custom-control.custom-radio').each(function( index,e ) {

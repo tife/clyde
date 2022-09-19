@@ -24,6 +24,22 @@
                 <a href="/">Home</a>
             </li>
         </xpath>
+        <xpath expr="//t[@t-call='website_sale.shop_product_carousel']" position="after">
+            <div class="owl-carousel owl-theme single-page-multi-image">
+                <t t-set="product_images"
+                   t-value="product_variant._get_images() if product_variant else product._get_images()"/>
+                <t t-foreach="product_images" t-as="product_image">
+                    <div t-attf-class="{{'active' if product_image_first else ''}}"
+                         data-target="#o-carousel-product" t-att-data-slide-to="str(product_image_index)">
+                        <div t-field="product_image.image_1024"
+                             t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid image-product-carousel", "alt-field": "name"}'/>
+                        <i t-if="product_image._name == 'product.image' and product_image.embed_code"
+                           class="fa fa-2x fa-play-circle o_product_video_thumb"/>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+
     </template>
     <!--
         <template id="product_banner_image_inherit" inherit_id="website_sale.product">
@@ -105,7 +121,7 @@
                                          t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid w-100", "alt-field": "name"}'/>
                                 </div>
                                 <div class="modal-footer p-0" style="border-top: 0px;justify-content: center;">
-									<div style="color: #ffffff;font-size: 26px;">
+                                    <div style="color: #ffffff;font-size: 26px;">
                                         <t t-esc="ptav.name"/>
                                     </div>
                                 </div>
@@ -332,28 +348,34 @@
                                    t-value="alt_product.env['product.product'].browse(combination_info['product_id'])"/>
                                 <a t-att-href="alt_product.website_url" class="square" style="display: block">
                                     <div class="content" style="overflow: hidden">
-                                    <t t-if="product_variant.product_template_image_ids">
-                                        <div t-if="product_variant" t-field="product_variant.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
-                                        <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
-                                    </t>
-                                    <t t-else="">
-                                        <div t-if="product_variant" t-field="product_variant.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
-                                        <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
-                                    </t>
-                                    <t t-if="product_variant.product_template_image_ids and product_variant">
-                                        <t t-set="extra_image_id" t-value="product_variant.product_template_image_ids[0]"/>
-                                        <div t-if="extra_image_id" t-field="extra_image_id.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
-                                    </t>
-                                    <t t-if="alt_product.product_template_image_ids and not product_variant">
-                                        <t t-set="extra_image_id" t-value="alt_product.product_template_image_ids[0]"/>
-                                        <div t-if="extra_image_id" t-field="extra_image_id.image_1024" class="hover-class-div"
-                                             t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
-                                    </t>
+                                        <t t-if="product_variant.product_template_image_ids">
+                                            <div t-if="product_variant" t-field="product_variant.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
+                                            <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div t-if="product_variant" t-field="product_variant.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                            <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                        </t>
+                                        <t t-if="product_variant.product_template_image_ids and product_variant">
+                                            <t t-set="extra_image_id"
+                                               t-value="product_variant.product_template_image_ids[0]"/>
+                                            <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                        </t>
+                                        <t t-if="alt_product.product_template_image_ids and not product_variant">
+                                            <t t-set="extra_image_id"
+                                               t-value="alt_product.product_template_image_ids[0]"/>
+                                            <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                        </t>
                                     </div>
                                 </a>
                                 <h6 class="mt-2 text-left">
@@ -366,7 +388,7 @@
                                    style="white-space: nowrap;"
                                    t-esc="alt_product.list_price"
                                    t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                    t-if="not user_id._is_public()"/>
+                                   t-if="not user_id._is_public()"/>
                             </div>
                         </div>
                     </t>
@@ -382,22 +404,7 @@
     </template>
 
     <template id="carousel_product_indicators_inherit" inherit_id="website_sale.carousel_product_indicators">
-        <xpath expr="//div" position="replace">
-            <div t-ignore="True" t-attf-class="o_carousel_product_indicators {{indicators_div_class}}">
-                <ol t-if="len(product_images) > 1"
-                    t-attf-class="carousel-indicators {{indicators_list_class}} position-static mx-auto my-0 text-left">
-                    <t t-foreach="product_images" t-as="product_image">
-                        <li t-attf-class="m-1 mb-2 align-top {{'active' if product_image_first else ''}}"
-                            data-target="#o-carousel-product" t-att-data-slide-to="str(product_image_index)">
-                            <div t-field="product_image.image_1024"
-                                 t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid image-product-carousel", "alt-field": "name"}'/>
-                            <i t-if="product_image._name == 'product.image' and product_image.embed_code"
-                               class="fa fa-2x fa-play-circle o_product_video_thumb"/>
-                        </li>
-                    </t>
-                </ol>
-            </div>
-        </xpath>
+        <xpath expr="//div" position="replace"/>
     </template>
     <record id="website_sale.product_share_buttons" model="ir.ui.view">
         <field name="active" eval="False"/>
