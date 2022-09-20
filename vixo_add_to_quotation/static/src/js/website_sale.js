@@ -15,7 +15,7 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
         init: function () {
             this._super.apply(this, arguments);
             $('.single-page-multi-image').owlCarousel({
-                loop:true,
+                loop:false,
                 margin:10,
                 nav:true,
                 navText: ['<span class="fa fa-chevron-left fa-2x"></span>','<span class="fa fa-chevron-right fa-2x"></span>'],
