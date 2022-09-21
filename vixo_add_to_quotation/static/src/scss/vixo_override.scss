@@ -11,9 +11,29 @@
 .home_section {
     padding-top: 25vh !important;
     height: calc(100vh - 65px - 10vh);
-}
+}/*
 .breadcrumb {
     display: none !important;
+}*/
+
+.owl-carousel .owl-item h6 a {
+    color: black;
+}
+
+#product_detail .s_share {
+    display: none;
+}
+
+.js_main_product p.text-15.mb-0 {
+    font-size: 1.3em;
+}
+
+.variant_attribute .attribute_name {
+    text-transform: capitalize;
+}
+
+.s_cover span.s_parallax_bg {
+    background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 body {

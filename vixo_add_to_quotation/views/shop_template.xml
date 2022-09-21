@@ -48,17 +48,27 @@
     </template>
     <template id="products_item_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="replace">
+            <t t-set="is_connected" t-value="not user_id._is_public()"/>
             <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
-                <t t-set="is_connected" t-value="not user_id._is_public()"/>
-                <span class="h5 text-black" t-if="combination_info['price'] and is_connected" t-esc="combination_info['price']"
-                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                <span class="h5 without_login_price d-block" t-attf-style="{{'text-decoration: line-through;' if is_connected else ''}}" t-if="product.without_login_price" t-esc="product.without_login_price"
+                <span class="h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected"
+                      t-esc="combination_info['price']"
                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                 <del t-attf-class="text-danger ml-1 h6 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
                      style="white-space: nowrap;" t-esc="combination_info['list_price']"
                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
                 <span itemprop="price" style="display:none;" t-esc="combination_info['price']"/>
                 <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
+                <span class="ml-2 h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected">Trade price</span>
+            </div>
+            <div class="product_price mb-1">
+                <span class="h5 without_login_price"
+                      t-attf-style="{{'text-decoration: line-through;  font-weight: 700 !important;' if is_connected else 'color:black;  font-weight: 700 !important;'}}"
+                      t-if="product.without_login_price" t-esc="product.without_login_price"
+                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                <span t-if="product.without_login_price" class="ml-2"
+                      t-attf-style="{{'text-decoration: line-through;  font-weight: 700 !important;' if is_connected else 'color:black;  font-weight: 700 !important;'}}">
+                    RRP
+                </span>
             </div>
         </xpath>
         <xpath expr="//div[hasclass('oe_product_image')]" position="replace">
