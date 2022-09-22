@@ -87,3 +87,10 @@ odoo.define("vixo_add_to_quotation.website_sale", function (require) {
     });
 
 });
+$( document ).ready(function() {
+    setTimeout(function(){
+        $( "#o-carousel-product" ).find('img').each(function( index ) {
+          $(this).removeAttr('loading');
+        })
+    }, 1500);
+});
