@@ -186,7 +186,7 @@
         </xpath>
         <xpath expr="//div[@id='product_details']" position="inside">
             <div class="row s_col_no_bgcolor s_faq_collapse tab_view_product_details mt-4">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div id="myCollapse" class="accordion" role="tablist">
                         <div class="bg-white tab_div" t-if="product.description_sale">
                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="true"
