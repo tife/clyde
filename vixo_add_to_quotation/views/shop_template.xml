@@ -46,10 +46,10 @@
             <attribute name="class">col-lg-2</attribute>
         </xpath>
     </template>
-    <template id="products_item_inherit" inherit_id="website_sale.products_item">
+    <template id="products_item_template_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="replace">
             <t t-set="is_connected" t-value="not user_id._is_public()"/>
-            <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
+            <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" t-if="not user_id._is_public()">
                 <span class="h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected"
                       t-esc="combination_info['price']"
                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
@@ -101,6 +101,7 @@
 
         </xpath>
 
+<!--
         <xpath expr="//div[hasclass('product_price')]" position="replace">
             <div t-if="not user_id._is_public()" class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
                 <span class="h5" t-if="combination_info['price']" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
@@ -109,6 +110,7 @@
                 <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
             </div>
         </xpath>
+-->
     </template>
 
     <template id="web_layout_inherit" inherit_id="web.layout">

@@ -55,11 +55,13 @@
             </xpath>
         </template>
     -->
+<!--
     <template id="products_item_inherit" inherit_id="website_sale.products_item">
         <xpath expr="//div[hasclass('product_price')]" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
         </xpath>
     </template>
+-->
     <template id="product_price_inherit" inherit_id="website_sale.product_price">
         <xpath expr="//div[hasclass('product_price', 'mb-3')]" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
