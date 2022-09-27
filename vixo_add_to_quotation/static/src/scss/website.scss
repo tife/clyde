@@ -26,7 +26,7 @@
 
     .tab_view_product_details {
         .tab_div {
-            border-top: 2px solid #777777;
+            border-top: 2px solid #4d4d4d;
 
             .tab_link {
                 font-size: 24px;
@@ -40,7 +40,7 @@
                     font-family: 'FontAwesome';
                     display: inline-block;
                     margin: 0 .5em 0 .75em;
-                    color: #777777;
+                    color: #4d4d4d;
                     position: absolute;
                     right: 0;
                 }
@@ -180,7 +180,7 @@ input#customer_ref{
 #top_menu_container{
     .justify-content-between.flex-wrap{
         padding: 12px 0;
-        border-bottom:1px solid #777777;
+        border-bottom:1px solid #4d4d4d;
     }
 }
 #top_menu .nav-item:last-child {
@@ -212,25 +212,25 @@ input#customer_ref{
     }
 }
 .my_cart_quantity{
-    background-color: #777777;
+    background-color: #4d4d4d;
 }
 .oe_search_button{
-    border-color: #777777!important;
-    background-color: #777777!important;
+    border-color: #4d4d4d!important;
+    background-color: #4d4d4d!important;
 }
 header .navbar-brand.logo img {
     width: 10rem!important;
     height:unset!important;
 }
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
-    color: #777777!important;
+    color: #4d4d4d!important;
     font-weight: bold;
 }
 #top_menu{
     padding-bottom: 1rem !important;
     padding-top: 1rem !important;
     li:nth-child(4) {
-      border-right:1px solid #777777;
+      border-right:1px solid #4d4d4d;
       padding-right: 12px;
     }
     li:nth-child(5) {
@@ -243,7 +243,7 @@ header .navbar-brand.logo img {
 }
 .clyde_footer_share_icon{
     a{
-        background: #777777;
+        background: #4d4d4d;
         border-radius: 50px;
         padding: 4px 7px;
         font-size: 18px;
@@ -398,8 +398,8 @@ header .navbar-brand.logo img {
     }
 }
 .progress-wizard .progress-wizard-step.active .progress-wizard-dot {
-    background: #777777!important;
-    box-shadow: 0 0 0 0.1875rem white, 0 0 0 0.25rem #777777!important;
+    background: #4d4d4d!important;
+    box-shadow: 0 0 0 0.1875rem white, 0 0 0 0.25rem #4d4d4d!important;
 }
 .td-product_name{
     a{
@@ -414,17 +414,21 @@ header .navbar-brand.logo img {
         background-color: black !important;
         border-width: 0px;
         border-color: black !important;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
     .float_left.js_add_cart_json{
         color: white !important;
         background-color: black !important;
         border-width: 0px;
         border-color: black !important;
+        border-top-right-radius: 20px!important;
+        border-bottom-right-radius: 20px!important;
     }
 }
 .oe_website_sale_tx_status{
     .card-header{
-        background: #777777!important;
+        background: #4d4d4d!important;
     }
     .card-body{
         background: rgb(127, 127, 127)!important;
@@ -440,12 +444,12 @@ header .navbar-brand.logo img {
         border-radius: 20px;
     }
     .o_download_btn, .o_portal_invoice_print{
-        background: #777777!important;
+        background: #4d4d4d!important;
     }
 }
 #quote_content{
     .btn-secondary{
-        background: #777777!important;
+        background: #4d4d4d!important;
     }
     .btn-primary{
         color: white!important;
