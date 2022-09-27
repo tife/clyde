@@ -165,7 +165,7 @@
                 <section class="bg-white py-4">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-3 col-12">
                                 <div class="s_share text-left no_icon_color clyde_footer_share_icon"
                                      data-snippet="s_share"
                                      data-name="Social Media">
@@ -184,7 +184,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 pt-2 text-right">
+                            <div class="col-12 col-md-9 pt-2 text-right">
                                 <ul class="d-inline-flex">
                                     <li class="list-unstyled">
                                         <a href="/contactus" class="text-black px-3 text-decoration-none">Contact Us</a>
