@@ -176,7 +176,7 @@
             <section t-if="product.iframe_url">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 col-6">
+                        <div class="col-lg-6 col-12">
                             <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="650"></iframe>
                         </div>
                     </div>
