@@ -16,7 +16,7 @@
                t-else="">Add to Quotation
             </a>
             <a class="ml-2" t-att-href="request.website.custom_enquiries" target="_blank"
-               style="text-decoration: underline;color: black;font-size: 22px;">Custom Enquiries
+               style="text-decoration: underline;color: black;font-size: 1.3em;">Custom Enquiries
             </a>
         </xpath>
         <xpath expr="//li[hasclass('breadcrumb-item', 'o_not_editable')]" position="replace">
