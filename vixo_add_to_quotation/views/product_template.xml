@@ -279,18 +279,18 @@
                                         <a class="dl-item m-3" t-if="product.product_attachment"
                                            t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
                                             Specification Sheet
-                                        </a>
+                                        </a><br/>
                                         <a class="dl-item m-3" t-if="product.product_attachment_dwg"
                                            t-att-href="'/web/content/product.template/%s/product_attachment_dwg?download=true' % product.id">
-                                            DWG
-                                        </a>
+                                            DWG CAD Files
+                                        </a><br/>
                                         <a class="dl-item m-3" t-if="product.product_attachment_3ds"
                                            t-att-href="'/web/content/product.template/%s/product_attachment_3ds?download=true' % product.id">
-                                            3DS
-                                        </a>
+                                            3DS 3D Files
+                                        </a><br/>
                                         <a class="dl-item m-3" t-if="product.product_attachment_fbx"
                                            t-att-href="'/web/content/product.template/%s/product_attachment_fbx?download=true' % product.id">
-                                            FBX
+                                            FBX 3D Files
                                         </a>
                                     </div>
                                 </div>
