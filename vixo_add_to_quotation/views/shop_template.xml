@@ -51,11 +51,9 @@
             <t t-set="is_connected" t-value="not user_id._is_public()"/>
             <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" t-if="not user_id._is_public()">
                 <span class="h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected"
-                      t-esc="combination_info['price']"
-                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                      t-esc="website.currency_id.symbol + ' ' + '%.0f'%(combination_info['price'])" />
                 <del t-attf-class="text-danger ml-1 h6 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                     style="white-space: nowrap;" t-esc="combination_info['list_price']"
-                     t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                     style="white-space: nowrap;" t-esc="website.currency_id.symbol + ' ' + '%.0f'%(combination_info['list_price'])" />
                 <span itemprop="price" style="display:none;" t-esc="combination_info['price']"/>
                 <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
                 <span class="ml-2 h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected">Trade price</span>
@@ -63,8 +61,7 @@
             <div class="product_price mb-1">
                 <span class="h5 without_login_price"
                       t-attf-style="{{'text-decoration: line-through;  font-weight: 700 !important;' if is_connected else 'color:black;  font-weight: 700 !important;'}}"
-                      t-if="product.without_login_price" t-esc="product.without_login_price"
-                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                      t-if="product.without_login_price" t-esc="website.currency_id.symbol + ' ' + '%.0f'%(product.without_login_price)" />
                 <span t-if="product.without_login_price" class="ml-2"
                       t-attf-style="{{'text-decoration: line-through;  font-weight: 700 !important;' if is_connected else 'color:black;  font-weight: 700 !important;'}}">
                     RRP

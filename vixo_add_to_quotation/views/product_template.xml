@@ -66,6 +66,9 @@
         <xpath expr="//div[hasclass('product_price', 'mb-3')]" position="attributes">
             <attribute name="t-if">not user_id._is_public()</attribute>
         </xpath>
+        <xpath expr="//span[hasclass('oe_price')]" position="replace">
+            <span class="oe_price" style="white-space: nowrap;" t-esc="website.currency_id.symbol + ' ' + '%.0f'%(combination_info['price'])" />
+        </xpath>
     </template>
     <template id="payment_inherit" inherit_id="website_sale.payment">
         <xpath expr="//t[@t-set='submit_button_label']" position="replace">
