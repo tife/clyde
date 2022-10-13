@@ -199,7 +199,7 @@
                                data-target="#myCollapseTab1557314859907">Product Details
                             </a>
                             <div class="collapse show" role="tabpanel" id="myCollapseTab1557314859907">
-                                <div class="card-body pt-0">
+                                <div class="card-body pt-0 pl-0">
                                     <p t-field="product.description_sale" class="text-muted"/>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                    data-target="#dimension_image">Dimensions
                                 </a>
                                 <div class="collapse" role="tabpanel" id="dimension_image">
-                                    <div class="card-body pt-0" id="dimension_image">
+                                    <div class="card-body pt-0 pl-0" id="dimension_image">
                                         <img class="img img-fluid w-100" t-if="product.dimension_image"
                                              t-attf-src="/website/image/product.template/#{product.id}/dimension_image/1800x1800"/>
                                     </div>
@@ -225,7 +225,7 @@
                                    data-target="#materials">Materials
                                 </a>
                                 <div class="collapse" role="tabpanel" id="materials">
-                                    <div class="card-body pt-0" id="materials">
+                                    <div class="card-body pt-0 pl-0" id="materials">
                                         <p t-field="product.materials" class="text-muted"/>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@
                                    data-target="#care_instructions">Care Instructions
                                 </a>
                                 <div class="collapse" role="tabpanel" id="care_instructions">
-                                    <div class="card-body pt-0" id="care_instructions">
+                                    <div class="card-body pt-0 pl-0" id="care_instructions">
                                         <a class="ml-2" t-att-href="product.care_instructions" target="_blank"
                                            style="text-decoration: underline;color: black;font-size: 16px;">Care
                                             Instructions
@@ -256,7 +256,7 @@
                                    data-target="#assembly_instructions">Assembly Instructions
                                 </a>
                                 <div class="collapse" role="tabpanel" id="assembly_instructions">
-                                    <div class="card-body pt-0" id="assembly_instructions">
+                                    <div class="card-body pt-0 pl-0" id="assembly_instructions">
                                         <a class="m-3" t-if="product.assembly_instructions"
                                            style="text-decoration: underline;color: black;font-size: 16px;"
                                            t-att-href="'/web/content/product.template/%s/assembly_instructions?download=true' % product.id">
@@ -277,7 +277,7 @@
                                data-target="#download">Download
                             </a>
                             <div class="collapse" role="tabpanel" id="download">
-                                <div class="card-body pt-0 product-detail-downloads" id="download">
+                                <div class="card-body pt-0  pl-0 product-detail-downloads" id="download">
                                     <div>
                                         <a class="dl-item m-3" t-if="product.product_attachment"
                                            t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
