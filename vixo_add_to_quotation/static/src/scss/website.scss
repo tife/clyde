@@ -238,7 +238,7 @@ header .navbar-brand.logo img {
     }
     .nav-link {
         padding: 0px 9px;
-		font-size: 16pt;
+		font-size: 1.6vw;
     }
 }
 .clyde_footer_share_icon{
@@ -309,6 +309,9 @@ header .navbar-brand.logo img {
     .o_header_affixed.o_header_is_scrolled{
         #top_menu{
             margin:0!important;
+            .nav-link {
+                font-size: 23px;
+            }
         }
         .header-logo-scroll{
             margin: 0!important;
