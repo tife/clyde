@@ -325,7 +325,11 @@ header .navbar-brand.logo img {
             height:400px!important;
         }
     } */
-
+	#top_menu{
+		li:nth-child(5) {
+		  padding-left: 0;
+		}
+	}
 }
 @media (min-width: 576px){
 .js_attribute_value{
