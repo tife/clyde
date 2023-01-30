@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="aboutus" name="About Us">
+        <t t-call="website.layout">
+            <div id="wrap" class="about-us">
+                <div class="oe_structure">
+                    <section>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <img src="/vixo_add_to_quotation/static/src/img/about.jpeg" class="img img-fluid"/>
+                                    <img src="/vixo_add_to_quotation/static/src/img/abouta.jpeg" class="img img-fluid"/>
+                                </div>
+                                <div class="col-lg-6 col-12 mt-4">
+                                    <h2 class="font-weight-bold">
+                                        About Us
+                                    </h2>
+                                    <p class="about_p">
+                                        Klyde is a new direct-to-market premium furniture brand. Each Klyde is crafted
+                                        from
+                                        <br class="d-none d-md-block"/>the highest-grade materials, making for a genuine
+                                        quality and lasting experience
+                                        of
+                                        <br class="d-none d-md-block"/>
+                                        luxury.
+                                    </p>
+                                    <p class="about_p">
+                                        Klyde is the antidote to fast furniture, a rejection of disposable furniture.
+                                    </p>
+                                    <p class="about_p">
+                                        Our range is a combination of on-trend pieces along with totally innovative
+                                        smart
+                                        <br class="d-none d-md-block"/>
+                                        designs by our head designer, focusing on solving specific interior problems.
+                                    </p>
+                                    <p class="about_p">
+                                        Klyde are designed to stimulate, evoke a mood and above all - Nurture.
+                                    </p>
+                                    <p/>
+                                    <hr/>
+                                    <p class="about_p" style="line-height: 2;">
+                                        Designed in Sydney Australia
+                                        <br class="d-none d-md-block"/>
+                                        Crafted from high-grade materials
+                                        <br class="d-none d-md-block"/>
+                                        Sold directly to market
+                                        <br class="d-none d-md-block"/>
+                                    </p>
+                                    <hr/>
+                                    <h4>
+                                        Designer Focused
+                                    </h4>
+                                    <p class="about_p">
+                                        The mission of Klyde is to enable design creators to realise their visions, to
+                                        facilitate
+                                        <br class="d-none d-md-block"/>
+                                        product design development and to enable authentic craftmanship to deliver
+                                        <br class="d-none d-md-block"/>
+                                        on the creator’s promise. Digital visualization tools and a unique real-time
+                                        quoting
+                                        <br class="d-none d-md-block"/>
+                                        service provide an easy workflow and rapid self-service experience.
+                                    </p>
+                                    <h4>
+                                        Quality
+                                    </h4>
+                                    <p class="about_p">
+                                        Our direct-to-market model enables us to invest more into the quality of
+                                        materials
+                                        <br class="d-none d-md-block"/>
+                                        and product construction. Klyde is more than attractive furniture, quality and
+                                        <br class="d-none d-md-block"/>
+                                        craftsmanship is a core principle of our brand.
+                                    </p>
+                                    <h4>
+                                        Earth Care
+                                    </h4>
+                                    <p class="about_p">
+                                        The world does not need another high street furniture store.
+                                        <br class="d-none d-md-block"/>
+                                        Klyde is built from a digital footprint, offering a smarter delivery platform
+                                        from a
+                                        smaller carbon footprint.
+                                        <br class="d-none d-md-block"/>
+                                        Our first goal was to be 100% free of polystyrene. With the use of honeycomb
+                                        <br class="d-none d-md-block"/>
+                                        cardboard internal packaging we have said goodbye to the hideous and
+                                        <br class="d-none d-md-block"/>
+                                        ubiquitous polystyrene foam.
+                                    </p>
+                                    <h4>
+                                        Designer Focused
+                                    </h4>
+                                    <p class="about_p">
+                                        The mission of Klyde is to enable design creators to realise their visions, to
+                                        facilitate
+                                        <br class="d-none d-md-block"/>
+                                        product design development and to enable authentic craftmanship to deliver
+                                        <br class="d-none d-md-block"/>
+                                        on the creator’s promise. Digital visualization tools and a unique real-time
+                                        quoting
+                                        <br class="d-none d-md-block"/>
+                                        service provide an easy workflow and rapid self-service experience.
+                                    </p>
+                                    <h4>
+                                        Quality
+                                    </h4>
+                                    <p class="about_p">
+                                        Our direct-to-market model enables us to invest more into the quality of
+                                        materials
+                                        <br class="d-none d-md-block"/>
+                                        and product construction. Klyde is more than attractive furniture, quality and
+                                        <br class="d-none d-md-block"/>
+                                        craftsmanship is a core principle of our brand.
+                                    </p>
+                                    <h4>
+                                        Earth Care
+                                    </h4>
+                                    <p class="about_p">
+                                        The world does not need another high street furniture store.
+                                    </p>
+                                    <p class="about_p">
+                                        Klyde is built from a digital footprint, offering a smarter delivery platform
+                                        from a
+                                        <br class="d-none d-md-block"/>
+                                        smaller carbon footprint.
+                                    </p>
+                                    <p class="about_p">
+                                        Our first goal was to be 100% free of polystyrene. With the use of honeycomb
+                                        <br class="d-none d-md-block"/>
+                                        cardboard internal packaging we have said goodbye to the hideous and
+                                        <br class="d-none d-md-block"/>
+                                        ubiquitous polystyrene foam.
+                                    </p>
+                                    <p class="about_p">
+                                        We are now actively working on our upstream supply chain to develop sustainable
+                                        <br class="d-none d-md-block"/>
+                                        materials. It is not a quick fix but Klyde’s commitment is to invest more energy
+                                        and
+                                        <br class="d-none d-md-block"/>
+                                        resources into the quality and sustainability of materials.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mt-5">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-lg-6 text-right">
+                                    <img src="/vixo_add_to_quotation/static/src/img/team3.jpg" class="img img-fluid"
+                                         style="width: 200px;height: 200px;"/>
+                                    <h4>
+                                        Brian Qi
+                                    </h4>
+                                    <p>
+                                        Head of Design
+                                    </p>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <h4>
+                                        Meet Our Designer
+                                    </h4>
+                                    <p class="about_p">
+                                        Brian Qi is a multidisciplinary designer based in Sydney, formally trained with
+                                        a
+                                        <br class="d-none d-md-block"/>
+                                        Bachelor Degree of Architecture and Master’s Degree in Design, he has worked
+                                        <br class="d-none d-md-block"/>
+                                        in the commercial design industry for 10 years on both interior architecture and
+                                        <br class="d-none d-md-block"/>
+                                        furniture design projects.
+                                    </p>
+                                    <p class="about_p">
+                                        Brian has won several design awards including the prestigious Red Dot Design
+                                        Award
+                                        <br class="d-none d-md-block"/>
+                                        in 2018, with his work included in the collection of the Red Dot Design Museum
+                                        in
+                                        <br class="d-none d-md-block"/>
+                                        China.
+                                    </p>
+                                    <p class="about_p">
+                                        Brian’s design philosophy centres around problem-identifying and
+                                        problem-solving.
+                                        <br class="d-none d-md-block"/>
+                                        Always looking for new ways with which to use materials, finishes and innovative
+                                        <br class="d-none d-md-block"/>
+                                        manufacturing processes to deliver something unique.
+                                        <br class="d-none d-md-block"/>
+                                        We are now actively working on our upstream supply chain to develop sustainable
+                                        <br class="d-none d-md-block"/>
+                                        materials. It is not a quick fix but Klyde’s commitment is to invest more energy
+                                        and
+                                        <br class="d-none d-md-block"/>
+                                        resources into the quality and sustainability of materials.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="container-fluid">
+                            <h4>
+                                Designed by Brian Qi
+                            </h4>
+                        </div>
+                    </section>
+                    <section data-snippet="s_dynamic_snippet"
+                             class="s_dynamic_snippet_products s_dynamic pt32 pb32 o_colored_level s_product_product_borderless_1 d-none hover-sec-image"
+                             data-name="Products" style="background-image: none;" data-filter-id="6"
+                             data-template-key="website_sale.dynamic_filter_template_product_product_borderless_1"
+                             data-product-category-id="all" data-number-of-elements="4"
+                             data-number-of-elements-small-devices="1" data-number-of-records="16"
+                             data-carousel-interval="5000000" data-original-title="" title=""
+                             aria-describedby="tooltip902503">
+                        <div class="o_not_editable container-fluid p-0">
+                            <div class="css_non_editable_mode_hidden">
+                                <div class="missing_option_warning alert alert-info rounded-0 fade show d-none d-print-none o_default_snippet_text">
+                                    Your Dynamic Snippet will be displayed here... This message is displayed because you
+                                    did not provided both a filter and a template to use.
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="dynamic_snippet_template"/>
+                        </div>
+                    </section>
+                </div>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+</odoo>

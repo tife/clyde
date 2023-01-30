@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']/group[@name='sale']" position="inside">
+                <group name="product_banner_image" string="Product Banner Image">
+                    <field name="product_banner_image" widget="image" class="oe_avatar"/>
+                </group>
+                <group name="product_details_image" string="Product Detail Image(Bottom)">
+                    <field name="product_details_image" widget="image" class="oe_avatar"/>
+                </group>
+            </xpath>
+            <field name="company_id" position="after">
+                <field name="without_login_price"/>
+            </field>
+            <field name="website_ribbon_id" position="after">
+                <field name="iframe_url"/>
+                <field name="product_attachment"/>
+                <field name="product_attachment_dwg"/>
+                <field name="product_attachment_3ds"/>
+                <field name="product_attachment_fbx"/>
+            </field>
+            <field name="description_sale" position="after">
+                <field name="dimension_image" widget="image" class="oe_avatar"/>
+                <field name="care_instructions"/>
+                <field name="assembly_instructions"/>
+                <field name="materials"/>
+                <field name="dimension"/>
+                <field name="lead_time"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.website.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='order_lines']//tree/field[@name='product_uom_qty']" position="before">
+                <field name="customer_note"/>
+                <field name="customer_ref"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="project_name"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_public_category_form_view_extend" model="ir.ui.view">
+        <field name="name">product.public.category.form.extend</field>
+        <field name="model">product.public.category</field>
+        <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="show_in_header"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_website_form_view_inherit" model="ir.ui.view">
+        <field name="name">website.modal.form.inherit</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <field name="default_lang_id" position="after">
+                <field name="custom_enquiries"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

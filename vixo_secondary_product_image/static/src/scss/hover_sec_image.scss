@@ -1,0 +1,55 @@
+.hover-sec-image .container, .hover-sec-image .container-small {
+    max-width: 100%;
+}
+
+.hover-sec-image .card {
+    border-radius: 0;
+    padding: 0 !important;
+}
+
+.hover-sec-image .card .card-img-top {
+    height: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.hover-sec-image .carousel-inner .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hover-sec-image .col-3 {
+    padding-left: 0.55vw;
+    padding-right: 0.55vw;
+}
+
+.hover-sec-image .h6.card-title {
+    color: black;
+    margin-bottom: 0;
+}
+
+.hover-sec-image .card span.font-weight-bold {
+    font-weight: 100 !important;
+    color: #757575;
+}
+
+.hover-sec-image .o_dynamic_product_hovered:hover {
+    transform:none;
+}
+
+.square {
+  position: relative;
+  width: 100%;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

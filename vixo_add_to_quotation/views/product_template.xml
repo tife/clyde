@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_inherit" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="attributes">
+            <attribute name="t-attf-class">container-fluid py-4 oe_website_sale
+                #{'discount' if combination_info['has_discounted_price'] else ''}
+            </attribute>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="replace">
+            <a role="button" id="add_to_cart" t-if="not user_id._is_public()"
+               class="btn btn-primary btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               href="#">Add To Quotation
+            </a>
+            <a role="button" class="btn btn-primary btn-lg my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               t-att-href="'/web/login?redirect=/shop/%s' % (slug(product))"
+               t-else="">Add to Quotation
+            </a>
+            <a class="ml-2" t-att-href="request.website.custom_enquiries" target="_blank"
+               style="text-decoration: underline;color: black;font-size: 1.3em;">Custom Enquiries
+            </a>
+        </xpath>
+        <xpath expr="//li[hasclass('breadcrumb-item', 'o_not_editable')]" position="replace">
+            <li class="breadcrumb-item o_not_editable">
+                <a href="/">Home</a>
+            </li>
+        </xpath>
+        <xpath expr="//t[@t-call='website_sale.shop_product_carousel']" position="after">
+            <div class="owl-carousel owl-theme single-page-multi-image">
+                <t t-set="product_images"
+                   t-value="product_variant._get_images() if product_variant else product._get_images()"/>
+                <t t-foreach="product_images" t-as="product_image">
+                    <div t-attf-class="{{'active' if product_image_first else ''}}"
+                         data-target="#o-carousel-product" t-att-data-slide-to="str(product_image_index)">
+                        <div t-field="product_image.image_512"
+                             t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid image-product-carousel", "alt-field": "name"}'/>
+                        <i t-if="product_image._name == 'product.image' and product_image.embed_code"
+                           class="fa fa-2x fa-play-circle o_product_video_thumb"/>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+
+    </template>
+    <!--
+        <template id="product_banner_image_inherit" inherit_id="website_sale.product">
+            <xpath expr="//section[@id='product_detail']" position="before">
+                <section>
+                    <div class="container-fluid p-0">
+                        <div class="col-12 p-0">
+                            <img class="img img-fluid w-100" t-if="product.product_banner_image"
+                                 t-attf-src="/website/image/product.template/#{product.id}/product_banner_image/1800x1800"/>
+                        </div>
+                    </div>
+                </section>
+            </xpath>
+        </template>
+    -->
+<!--
+    <template id="products_item_inherit" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('product_price')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+    </template>
+-->
+    <template id="product_price_inherit" inherit_id="website_sale.product_price">
+	<!--
+        <xpath expr="//div[hasclass('product_price', 'mb-3')]" position="attributes">
+            <attribute name="t-if">not user_id._is_public()</attribute>
+        </xpath>
+	-->
+        <xpath expr="//span[hasclass('oe_price')]" position="replace">
+			<span t-if="user_id._is_public() and product.without_login_price" class="oe_price" style="white-space: nowrap;" t-esc="website.currency_id.symbol + '{:,.0f}'.format(product.without_login_price)" />
+            <span t-if="not user_id._is_public()" class="oe_price" style="white-space: nowrap;" t-esc="website.currency_id.symbol + '{:,.0f}'.format(combination_info['price'])" />
+        </xpath>
+    </template>
+    <template id="payment_inherit" inherit_id="website_sale.payment">
+        <xpath expr="//t[@t-set='submit_button_label']" position="replace">
+            <t t-set="submit_button_label">Confirm Quotation</t>
+        </xpath>
+    </template>
+    <template id="confirmation_inherit" inherit_id="website_sale.confirmation">
+        <xpath expr="//td[@colspan='2']/t" position="replace">
+        </xpath>
+    </template>
+    <template id="variants_inherit" inherit_id="sale.variants">
+        <xpath expr="//strong" position="after">
+            <t t-if="ptal.attribute_id.display_type == 'radio'">
+                <t t-foreach="ptal.product_template_value_ids._only_active()" t-as="ptav">
+                    <span class="attribute_class" t-att-data-value_id="ptav.id">
+                        <strong style="font-size: 1.3rem;">
+                            |
+                            <t t-esc="ptav.name"/>
+                        </strong>
+                    </span>
+                </t>
+            </t>
+            <br/>
+        </xpath>
+        <xpath expr="//ul//ul/t" position="before">
+            <t t-set="count" t-value="0"/>
+        </xpath>
+        <xpath expr="//ul//ul/t/li" position="before">
+            <t t-if="count in [5,10,15,20,25,30,35,40]">
+                <br class="br_class"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('custom-radio')]/div" position="replace">
+            <t t-set="count" t-value="count + 1"/>
+            <div class="radio_input_value custom-control-label">
+                <t t-if="ptav.product_attribute_value_id.attr_image">
+                    <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
+                         data-toggle="modal" t-attf-data-target="#attribute_#{ptav.product_attribute_value_id.id}"
+                         t-options='{"style":"max-width: 92px;background-color: #fff;border-radius: 64px;padding: 5px;font-size: 14px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);cursor: pointer;transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);","widget": "image", "qweb_img_responsive": False, "class": "img img-fluid", "alt-field": "name", "resize": "300x300"}'/>
+                    <div class="modal fade" t-attf-id="attribute_#{ptav.product_attribute_value_id.id}" tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content" style="background: transparent;border: 0;">
+                                <div class="modal-header" style="border-bottom: 0px;">
+                                    <button style="color: #ffffff;font-size: 26px;right: 0;position: absolute;opacity:1; text-shadow:none"
+                                            type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        x
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div t-field="ptav.product_attribute_value_id.attr_image" t-att-title="ptav.name"
+                                         data-toggle="modal" class="text-center"
+                                         t-attf-data-target="#attribute_#{ptav.product_attribute_value_id.id}"
+                                         t-options='{"widget": "image", "qweb_img_responsive": False, "class": "img img-fluid w-100", "alt-field": "name"}'/>
+                                </div>
+                                <div class="modal-footer p-0" style="border-top: 0px;justify-content: center;">
+                                    <div style="color: #ffffff;font-size: 26px;">
+                                        <t t-esc="ptav.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-else="">
+                    <span t-field="ptav.name"/>
+                    <t t-call="sale.badge_extra_price"/>
+                </t>
+
+            </div>
+        </xpath>
+    </template>
+    <template id="product_description_sale_inherit" inherit_id="website_sale.product">
+        <xpath expr="//p[@t-field='product.description_sale']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="after">
+            <!--
+                        <section>
+                            <div class="container-fluid p-0">
+                                <div class="col-12 p-0">
+                                    <img class="img img-fluid w-100" t-if="product.product_details_image"
+                                         t-attf-src="/website/image/product.template/#{product.id}/product_details_image/1800x1800"/>
+                                </div>
+                            </div>
+                        </section>
+            -->
+            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover"
+                     t-if="product.product_banner_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;"
+                     data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg"
+                      t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_banner_image/\')'"/>
+                <div class="o_we_bg_filter"/>
+            </section>
+
+            <section class="s_cover parallax s_parallax_is_fixed o_colored_level"
+                     data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover"
+                     t-if="product.product_details_image"
+                     style="background-image: none;    padding-top: 450px !important;    padding-bottom: 450px !important;"
+                     data-original-title="" title="" aria-describedby="tooltip565274">
+                <span class="s_parallax_bg oe_img_bg"
+                      t-att-style="'background-image:url(\'/web/image/product.template/' + str(product.id) + '/product_details_image/\')'"/>
+                <div class="o_we_bg_filter"/>
+            </section>
+            <section t-if="product.iframe_url">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <iframe t-att-src="product.iframe_url" frameborder="0" width="100%" height="650"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[@id='product_full_description']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div class="row s_col_no_bgcolor s_faq_collapse tab_view_product_details mt-4">
+                <div class="col-lg-6">
+                    <div id="myCollapse" class="accordion" role="tablist">
+                        <div class="bg-white tab_div" t-if="product.description_sale">
+                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="true"
+                               class="o_default_snippet_text tab_link" data-parent="#myCollapse"
+                               data-target="#myCollapseTab1557314859907">Product Details
+                            </a>
+                            <div class="collapse show" role="tabpanel" id="myCollapseTab1557314859907">
+                                <div class="card-body pt-0 pl-0">
+                                    <p t-field="product.description_sale" class="text-muted"/>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-if="product.dimension_image">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#dimension_image">Dimensions
+                                </a>
+                                <div class="collapse" role="tabpanel" id="dimension_image">
+                                    <div class="card-body pt-0 pl-0" id="dimension_image">
+                                        <img class="img img-fluid w-100" t-if="product.dimension_image"
+                                             t-attf-src="/website/image/product.template/#{product.id}/dimension_image/1800x1800"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="product.materials">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#materials">Materials
+                                </a>
+                                <div class="collapse" role="tabpanel" id="materials">
+                                    <div class="card-body pt-0 pl-0" id="materials">
+                                        <p t-field="product.materials" class="text-muted"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="product.care_instructions">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   style="color: black;"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#care_instructions">Care Instructions
+                                </a>
+                                <div class="collapse" role="tabpanel" id="care_instructions">
+                                    <div class="card-body pt-0 pl-0" id="care_instructions">
+                                        <a class="ml-2" t-att-href="product.care_instructions" target="_blank"
+                                           style="text-decoration: underline;color: black;font-size: 16px;">Care
+                                            Instructions
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="product.assembly_instructions">
+                            <div class="bg-white tab_div">
+                                <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                   style="color: black;"
+                                   class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                                   data-target="#assembly_instructions">Assembly Instructions
+                                </a>
+                                <div class="collapse" role="tabpanel" id="assembly_instructions">
+                                    <div class="card-body pt-0 pl-0" id="assembly_instructions">
+                                        <a class="m-3" t-if="product.assembly_instructions"
+                                           style="text-decoration: underline;color: black;font-size: 16px;"
+                                           t-att-href="'/web/content/product.template/%s/assembly_instructions?download=true' % product.id">
+                                            Assembly
+                                            Instructions
+                                            <span
+                                                    class="fa fa-download"/>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="bg-white tab_div">
+                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                               style="color: black;"
+                               class="collapsed o_default_snippet_text tab_link" data-parent="#myCollapse"
+                               data-target="#download">Download
+                            </a>
+                            <div class="collapse" role="tabpanel" id="download">
+                                <div class="card-body pt-0  pl-0 product-detail-downloads" id="download">
+                                    <div>
+                                        <a class="dl-item m-3" t-if="product.product_attachment"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment?download=true' % product.id">
+                                            Specification Sheet
+                                        </a><br/>
+                                        <a class="dl-item m-3" t-if="product.product_attachment_dwg"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_dwg?download=true' % product.id">
+                                            DWG CAD Files
+                                        </a><br/>
+                                        <a class="dl-item m-3" t-if="product.product_attachment_3ds"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_3ds?download=true' % product.id">
+                                            3DS 3D Files
+                                        </a><br/>
+                                        <a class="dl-item m-3" t-if="product.product_attachment_fbx"
+                                           t-att-href="'/web/content/product.template/%s/product_attachment_fbx?download=true' % product.id">
+                                            FBX 3D Files
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h4 mt-3 d-flex ml-4" contenteditable="false">
+                <t t-snippet-call="website.s_share">
+                    <t t-set="_exclude_share_links" t-value="['whatsapp', 'linkedin']"/>
+                    <t t-set="_no_title" t-value="True"/>
+                    <t t-set="_classes" t-valuef="text-lg-right"/>
+                    <t t-set="_link_classes" t-valuef="mx-1 my-0"/>
+                </t>
+            </div>
+        </xpath>
+
+    </template>
+    <template id="product_quantity_inherit" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="replace">
+            <p class="text-black text-15 mb-0" style="font-weight: bold;">Quantity</p>
+            <div class="css_quantity input-group d-inline-flex mr-2 my-1 align-middle" contenteditable="false">
+                <input type="number" class="form-control quantity" data-min="1" name="add_qty"
+                       t-att-value="add_qty or 1"/>
+            </div>
+            <div t-if="product.lead_time">
+                <p class="mb-0 text-15">
+                    <b>
+                        Lead Time
+                    </b>
+                </p>
+                <p class="text-muted text-12">
+                    <t t-esc="product.lead_time"/>
+                </p>
+            </div>
+        </xpath>
+    </template>
+    <template id="recommended_products_inherit" inherit_id="website_sale.recommended_products">
+        <xpath expr="//div[hasclass('container')]" position="replace">
+            <div class="container-fluid mt32" t-if="alternative_products">
+                <h3>Recommended Products:</h3>
+                <div class="owl-carousel owl-theme recommended-product">
+                    <t t-foreach="alternative_products" t-as="alt_product">
+                        <div class="item" t-att-data-publish="alt_product.website_published and 'on' or 'off'">
+                            <div class="mt16 text-center" style="height: 100%;">
+                                <t t-set="combination_info" t-value="alt_product._get_combination_info()"/>
+                                <t t-set="product_variant"
+                                   t-value="alt_product.env['product.product'].browse(combination_info['product_id'])"/>
+                                <a t-att-href="alt_product.website_url" class="square" style="display: block">
+                                    <div class="content" style="overflow: hidden">
+                                        <t t-if="product_variant.product_template_image_ids">
+                                            <div t-if="product_variant" t-field="product_variant.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
+                                            <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-1' }"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div t-if="product_variant" t-field="product_variant.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                            <div t-else="" t-field="alt_product.image_1024" class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid' }"/>
+                                        </t>
+                                        <t t-if="product_variant.product_template_image_ids and product_variant">
+                                            <t t-set="extra_image_id"
+                                               t-value="product_variant.product_template_image_ids[0]"/>
+                                            <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                        </t>
+                                        <t t-if="alt_product.product_template_image_ids and not product_variant">
+                                            <t t-set="extra_image_id"
+                                               t-value="alt_product.product_template_image_ids[0]"/>
+                                            <div t-if="extra_image_id" t-field="extra_image_id.image_1024"
+                                                 class="hover-class-div"
+                                                 t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid pic-2' }"/>
+                                        </t>
+                                    </div>
+                                </a>
+                                <h6 class="mt-2 text-left">
+                                    <a t-att-href="alt_product.website_url" style="display: block">
+                                        <span t-att-title="alt_product.name" t-field="alt_product.name"
+                                              class="o_text_overflow" style="display: block;"/>
+                                    </a>
+                                </h6>
+                                <p class="ml-1 h6 text-left price"
+                                   style="white-space: nowrap;"
+                                   t-esc="alt_product.list_price"
+                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                   t-if="not user_id._is_public()"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="carousel_product_indicators_inherit" inherit_id="website_sale.carousel_product_indicators">
+        <xpath expr="//div[@t-field='product_image.image_128']" position="attributes">
+            <attribute name="t-field">product_image.image_512</attribute>
+        </xpath>
+    </template>
+
+    <template id="carousel_product_indicators_inherit" inherit_id="website_sale.carousel_product_indicators">
+        <xpath expr="//div" position="replace"/>
+    </template>
+    <record id="website_sale.product_share_buttons" model="ir.ui.view">
+        <field name="active" eval="False"/>
+        <field name="customize_show" eval="False"/>
+    </record>
+</odoo>

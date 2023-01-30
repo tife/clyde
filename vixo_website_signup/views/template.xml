@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login_layout_inherit" inherit_id="website.login_layout">
+        <xpath expr="//div[hasclass('oe_website_login_container')]" position="attributes">
+            <attribute name="class">oe_website_login_container container mt-5</attribute>
+        </xpath>
+    </template>
+    <template id="auth_signup_signup_inherit" inherit_id="auth_signup.signup">
+        <xpath expr="//form[hasclass('oe_signup_form')]" position="attributes">
+            <attribute name="class">oe_signup_form row</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_login_buttons')]" position="attributes">
+            <attribute name="class">text-center oe_login_buttons pt-3 pl-3</attribute>
+        </xpath>
+    </template>
+    <template id="auth_signup.fields" name="Auth Signup/ResetPassword form fields">
+        <style>
+            .container > .oe_signup_form{
+            max-width: 100% !important;
+            }
+        </style>
+        <div class="col-md-4">
+            <h5>
+                <label>Contact Information</label>
+            </h5>
+            <div class="form-group mb-3">
+                <label for="demo_title">Title<span class='red-asterisks'>*</span></label>
+                <br/>
+                <select class="form-control" name="demo_title" id="demo_title" required="required"
+						t-att-readonly="'readonly' if only_passwords else None"
+                        t-att-autofocus="'autofocus' if login and not only_passwords else None">
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                </select>
+            </div>
+
+            <div class="form-group field-name pt-2">
+                <label for="name">First Name<span class='red-asterisks'>*</span></label>
+                <input type="text" name="name" t-att-value="name" id="name" class="form-control"
+                       placeholder="First Name" required="required"
+                       t-att-readonly="'readonly' if only_passwords else None"
+                       t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name<span class='red-asterisks'>*</span></label>
+                <input type="text" name="last_name" id="last_name" class="form-control"
+                       required="required" placeholder="Last Name"
+					   t-att-readonly="'readonly' if only_passwords else None"
+                       t-att-autofocus="'autofocus' if only_passwords else None"/>
+            </div>
+            <div class="form-group field-login">
+                <label for="login">Email<span class='red-asterisks'>*</span></label>
+                <input type="text" name="login" placeholder="Email" t-att-value="login" id="login" class="form-control"
+                       autofocus="autofocus"
+                       autocapitalize="off" required="required"
+                       t-att-readonly="'readonly' if only_passwords else None"/>
+            </div>
+            <div class="form-group field-mobile">
+                <label for="mobile" class="control-label">Mobile<span class='red-asterisks'>*</span></label>
+                <input type="text" name="mobile" t-att-value="mobile" id="mobile" class="form-control"
+                       required="required" placeholder="Mobile" t-att-readonly="'readonly' if only_passwords else None"
+                       t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+            </div>
+            <div class="form-group field-phone">
+                <label for="phone" class="control-label">Phone<span class='red-asterisks'>*</span></label>
+                <input type="text" placeholder="Phone" name="phone" t-att-value="phone" id="phone" class="form-control"
+                       t-att-readonly="'readonly' if only_passwords else None"
+                       t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+            </div>
+
+        </div>
+		<div class="col-md-4" t-if="not only_passwords == 1">
+			<h5>
+				<label>Business Details</label>
+			</h5>
+
+			<div class="form-group field-companyname">
+				<label for="company_name" class="control-label">Business Name<span class='red-asterisks'>*</span></label>
+				<input type="text" name="company_name"
+					   t-att-value="company_name" id="company_name" class="form-control"
+					   placeholder="Business Name" required="required"
+					   t-att-autofocus="'autofocus' if only_passwords else None"/>
+			</div>
+
+			<div class="form-group field-abn pt-2">
+				<label for="abn">ABN<span class='red-asterisks'>*</span></label>
+				<input type="text" placeholder="ABN" name="abn" id="abn" class="form-control"
+					   required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>
+			</div>
+
+			<div class="form-group field-entity_name">
+				<label for="entity_name">Entity Name</label>
+				<input type="text" placeholder="Enter entity name if different to the business name entered above"
+					   name="entity_name" id="entity_name" class="form-control"/>
+			</div>
+			<div class="form-group field-street_name">
+				<label for="street" class="control-label">Head office Street Address<span class='red-asterisks'>*</span></label>
+				<input type="text" placeholder="Street Address" name="street" t-att-value="street" id="street"
+					   class="form-control" required="required" t-att-readonly="'readonly' if only_passwords else None"
+					   t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+			</div>
+			<div class="form-group field-city">
+				<label for="city" class="control-label">Suburb<span class='red-asterisks'>*</span></label>
+				<input type="text" placeholder="Suburb" name="city" t-att-value="city" id="city" class="form-control"
+					   required="required" t-att-readonly="'readonly' if only_passwords else None"
+					   t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+			</div>
+			<div class="form-group field-country">
+				<label for="country_id" class="control-label">Country</label>
+				<select name="country_id" class="form-control" required="required" id="country_id"
+						t-att-readonly="'readonly' if only_passwords else None"
+						t-att-autofocus="'autofocus' if login and not only_passwords else None">
+					<option value="">Country</option>
+					<t t-foreach="countries.filtered(lambda c: c.id == 13 or c.id == 170) or []" t-as="country">
+						<option t-att-value="country.id">
+							<t t-esc="country.name"/>
+						</option>
+					</t>
+				</select>
+			</div>
+			<div class="form-group field-state">
+				<label for="state_id" class="control-label">State<span class='red-asterisks'>*</span></label>
+				<!--<select name="state_id" class="form-control" required="required" t-att-readonly="'readonly' if only_passwords else None"
+					t-att-autofocus="'autofocus' if login and not only_passwords else None">
+					<option value="">State*</option>
+					<t t-foreach="states or []" t-as="state">
+						<option t-att-value="state.id">
+							<t t-esc="state.name" />
+						</option>
+					</t>
+				</select>-->
+				<select name="state_id" class="form-control "
+						data-init="1">
+					<option value="">State / Province...</option>
+				</select>
+			</div>
+			<div class="form-group field-zip">
+				<label for="zip" class="control-label">Post Code<span class='red-asterisks'>*</span></label>
+				<input type="text" name="zip" id="zip" class="form-control" required="required"
+					   t-att-readonly="'readonly' if only_passwords else None"
+					   t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+			</div>
+
+			<div class="form-group mb-3">
+				<label for="business_type">Primary Business Type<span class='red-asterisks'>*</span></label>
+				<br/>
+				<select class="form-control" name="business_type" id="business_type" required="required"
+						t-att-autofocus="'autofocus' if login and not only_passwords else None">
+					<option value="architect">Architect</option>
+					<option value="furniture_retailer">Furniture Retailer</option>
+					<option value="interior_designer">Interior Designer</option>
+					<option value="hospitality">Hospitality</option>
+					<option value="online_retailer">Online Retailer</option>
+					<option value="commercial_furniture">Commercial Furniture</option>
+				</select>
+			</div>
+		</div>
+		
+        <div class="col-md-4">
+            <h5>
+                <label>Password Detail</label>
+            </h5>
+            <div class="form-group field-password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control"
+                       required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>
+            </div>
+
+            <div class="form-group field-confirm_password pt-2">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                       required="required"/>
+            </div>
+        </div>
+
+
+        <!-- <div class="form-group field-companyname">
+            <label for="company_name" class="control-label">Business Name</label>
+            <input type="text" name="company_name"
+                t-att-value="company_name" id="company_name" class="form-control"
+                placeholder="e.g. Carmody Studio"
+                t-att-readonly="'readonly' if only_passwords else None"/>
+        </div> -->
+
+    </template>
+
+</odoo>

@@ -1,0 +1,109 @@
+.home_section_title {
+    font-family: 'Century Gothic', 'Lato';
+    font-weight: 900;
+    font-size: 136px;
+}
+
+.home_section:first-child {
+    padding-top: 20vh !important;
+    height: calc(100vh - 160px - 10vh);
+}
+.home_section {
+    padding-top: 25vh !important;
+    height: calc(100vh - 65px - 10vh);
+}/*
+.breadcrumb {
+    display: none !important;
+}*/
+
+.owl-carousel .owl-item h6 a {
+    color: black;
+}
+
+#product_detail .s_share {
+    display: none;
+}
+
+.js_main_product p.text-15.mb-0 {
+    font-size: 1.3em;
+}
+
+.variant_attribute .attribute_name {
+    text-transform: capitalize;
+}
+
+.s_cover span.s_parallax_bg {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+body {
+    font-family: "Century Gothic", Lato, "Source Sans Pro", "Odoo Unicode Support Noto", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Century Gothic", Lato, "Source Sans Pro", "Odoo Unicode Support Noto", sans-serif;
+}
+
+.o_carousel_product_indicators ol.carousel-indicators {
+    margin-left: -7px !important;
+    margin-right: -7px !important;
+}
+
+.navbar-brand, .navbar-text, .navbar .nav-link, .navbar a.js_change_lang span, .navbar a.o_add_language {
+    font-family: "Century Gothic", Lato, "Source Sans Pro", "Odoo Unicode Support Noto", sans-serif !important;
+}
+
+ol.carousel-indicators li {
+    width: 25% !important;
+    position: relative !important;
+    height: 0 !important;
+    padding-bottom: 25%;
+    overflow: hidden;
+}
+
+ol.carousel-indicators li img {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.product-list.grid-view-items div.o_wsale_product_information {
+    background-color: white !important;
+}
+
+.o_header_is_scrolled .oe_search_box {
+    width: 120px;
+}
+.o_header_is_scrolled #top_menu_container {
+    max-width: 1230px;
+	padding: 0;
+}
+
+.oe_website_sale_tx_status .bg-info {
+	background-color: inherit !important;
+}
+
+.product-detail-downloads a.dl-item {
+	text-decoration: underline;
+	line-height: 35px;
+}
+
+.mycart-popover .alert-info {
+	border-color: inherit;
+}
+
+
+@media (max-width: 576px){
+    .home_section_title{
+        font-size: 4em;
+    }
+    .home_section {
+        padding-top: 10vh !important;
+        padding-bottom: 10vh !important;
+    }
+    .home_section:first-child {
+        padding-top: 10vh !important;
+    }
+	footer ul.d-inline-flex {
+		display: block !important;
+	}
+}
