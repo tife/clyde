@@ -50,7 +50,7 @@
         <xpath expr="//div[hasclass('product_price')]" position="replace">
             <t t-set="is_connected" t-value="not user_id._is_public()"/>
             <div class="product_price mb-1" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" t-if="not user_id._is_public()">
-				<span class="text-black" style="font-size t-if="combination_info['price'] and is_connected">From</span>
+				<span class="text-black" t-if="combination_info['price'] and is_connected">From</span>
                 <span class="h5 text-black font-weight-bold" t-if="combination_info['price'] and is_connected"
                       t-esc="website.currency_id.symbol + '{:,.0f}'.format(combination_info['price'])" />
                 <del t-attf-class="text-danger ml-1 h6 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
