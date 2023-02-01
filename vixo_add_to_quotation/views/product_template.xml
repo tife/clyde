@@ -69,7 +69,7 @@
         </xpath>
 	-->
         <xpath expr="//span[hasclass('oe_price')]" position="replace">
-			<span t-if="user_id._is_public() and product.without_login_price" class="oe_price" style="white-space: nowrap;" t-esc="'From ' + website.currency_id.symbol + '{:,.0f}'.format(product.without_login_price)" />
+			<span t-if="user_id._is_public() and product.without_login_price" class="oe_price" style="white-space: nowrap;" t-esc="'<span class=&apos;price_from&apos;>From</span> ' + website.currency_id.symbol + '{:,.0f}'.format(product.without_login_price)" />
             <span t-if="not user_id._is_public()" class="oe_price" style="white-space: nowrap;" t-esc="'From ' + website.currency_id.symbol + '{:,.0f}'.format(combination_info['price'])" /> 
         </xpath>
     </template>
