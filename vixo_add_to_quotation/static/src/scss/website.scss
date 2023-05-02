@@ -229,16 +229,9 @@ header .navbar-brand.logo img {
 #top_menu{
     padding-bottom: 1rem !important;
     padding-top: 1rem !important;
-    li:nth-child(4) {
-      border-right:1px solid #4d4d4d;
-      padding-right: 12px;
-    }
-    li:nth-child(5) {
-      padding-left: 12px;
-    }
     .nav-link {
         padding: 0px 9px;
-		font-size: 1.6vw;
+		font-size: 16pt;
     }
 }
 .clyde_footer_share_icon{
@@ -309,9 +302,6 @@ header .navbar-brand.logo img {
     .o_header_affixed.o_header_is_scrolled{
         #top_menu{
             margin:0!important;
-            .nav-link {
-                font-size: 23px;
-            }
         }
         .header-logo-scroll{
             margin: 0!important;
@@ -328,14 +318,23 @@ header .navbar-brand.logo img {
             height:400px!important;
         }
     } */
-
+	#top_menu{
+		li:nth-child(5) {
+		  border-right:1px solid #4d4d4d;
+		  padding-right: 12px;
+		}
+		li:nth-child(6) {
+		  padding-left: 12px;
+		}
+	}
+	
 }
 @media (min-width: 576px){
-.js_attribute_value{
-.modal-dialog {
-    height: unset!important;
-}
-}
+	.js_attribute_value{
+		.modal-dialog {
+			height: unset!important;
+		}
+	}
 }
 
 #o-carousel-product{
@@ -507,7 +506,6 @@ header .navbar-brand.logo img {
 }
 .about_p{
     font-size: 14px;
-    font-weight: 100;
 }
 .about-us{
     h4{

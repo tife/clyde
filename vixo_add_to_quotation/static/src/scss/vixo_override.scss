@@ -75,6 +75,7 @@ ol.carousel-indicators li img {
 }
 .o_header_is_scrolled #top_menu_container {
     max-width: 1230px;
+	padding: 0;
 }
 
 .oe_website_sale_tx_status .bg-info {
@@ -86,6 +87,11 @@ ol.carousel-indicators li img {
 	line-height: 35px;
 }
 
+.mycart-popover .alert-info {
+	border-color: inherit;
+}
+
+
 @media (max-width: 576px){
     .home_section_title{
         font-size: 4em;
@@ -96,4 +102,8 @@ ol.carousel-indicators li img {
     }
     .home_section:first-child {
         padding-top: 10vh !important;
-    }}
+    }
+	footer ul.d-inline-flex {
+		display: block !important;
+	}
+}
