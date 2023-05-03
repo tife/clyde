@@ -219,6 +219,10 @@
 											==
 											<span t-field="line.product_id.id"/>
 											==
+											<span t-esc="line.product_id.product_tmpl_id.is_product_variant"/>
+											==
+											<span t-esc="line.product_id.product_tmpl_id.id"/>
+											==
 											<span t-esc="line.product_id.product_tmpl_id.name"/>
                                         </b>
                                     </td>
