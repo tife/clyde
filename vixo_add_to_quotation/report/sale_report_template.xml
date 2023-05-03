@@ -219,7 +219,7 @@
 											==
 											<span t-field="line.product_id.id"/>
 											==
-											<span t-esc="line.product_id.name"/>
+											<span t-esc="line.product_id.product_tmpl_id.name"/>
                                         </b>
                                     </td>
 <!--                                    <td style=" border-top: 0 !important;border-bottom: 0 !important;"></td>-->
